@@ -9,10 +9,11 @@
     <link rel="stylesheet" href="../Assets\Css\styles.css">
     <link rel="stylesheet" href="../Assets\Css\fonts.css">
     <link rel="stylesheet" href="../Assets\Css\flex.css">
-    <link rel="stylesheet" href="../Assets\Css\flex.css">
+    <link rel="stylesheet" href="../Assets\Css\keyframes.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     
     <!-- Titre-->
+    <link rel="icon" href="../Assets\Pictures\Blume_black.png" type="image/x-icon">
     <title><?= $title ?></title>
 </head>
 
@@ -26,9 +27,11 @@
         <?php require_once($template); ?>
     </main>
     <!-- footer -->
-    <footer>
-        <?php require_once("Views\Components/footer.php"); ?>
-    </footer>
+    <div class="footer-clean">
+        <footer>
+            <?php require_once("Views\Components/footer.php"); ?>
+        </footer>
+    </div>
     <!-- menu script -->
     <script src=""> </script>
     <!-- footer script -->

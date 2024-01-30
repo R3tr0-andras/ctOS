@@ -1,0 +1,12 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a {
+    color: white;
+}
+
+a:hover {
+    color: rgb(77, 204, 255);
+}

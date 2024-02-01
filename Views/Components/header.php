@@ -14,4 +14,8 @@
         <!-- et -->
         <a href="/searching">Search</a>
     <?php endif ?>
+    <?php if (isset($_SESSION['user'])) : ?>
+        <!-- Faker -->
+        <a href="/fakerCreator">Faker</a>
+    <?php endif ?>
 </nav>

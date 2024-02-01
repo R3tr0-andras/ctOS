@@ -71,7 +71,7 @@ function GenderGenerate()
 function getRandomEthnicity()
 {
     // Chemin vers le fichier JSON contenant les ethnies
-    $cheminFichier = '../Assets\json\ethnicity.json';
+    $cheminFichier = '../Assets/json/ethnicity.json';
 
     // Lire le contenu du fichier JSON
     $contenuFichier = file_get_contents($cheminFichier);
@@ -303,6 +303,7 @@ function CreateRecentThing ($pdo, $userId) {
 
 }
 
+/* Obtenir un fait récent sur l'utilisateur faker */
 function GetRecent () {
     // Charger le contenu du fichier JSON des sanctions
     $jsonContent = file_get_contents('../Assets\json\recent.json');

@@ -1,0 +1,98 @@
+{
+  "Low": [
+    {
+      "sanction": "Avertissement verbal"
+    },
+    {
+      "sanction": "Retrait de privilèges temporaires"
+    },
+    {
+      "sanction": "Travail d'intérêt général"
+    },
+    {
+      "sanction": "Réprimande écrite"
+    },
+    {
+      "sanction": "Mise à pied d'un jour"
+    },
+    {
+      "sanction": "Excuse publique"
+    },
+    {
+      "sanction": "Projet de réhabilitation"
+    },
+    {
+      "sanction": "Formation obligatoire"
+    },
+    {
+      "sanction": "Service communautaire"
+    },
+    {
+      "sanction": "Pénalité financière légère"
+    }
+  ],
+  "Medium": [
+    {
+      "sanction": "Retenue sur salaire"
+    },
+    {
+      "sanction": "Suspension temporaire"
+    },
+    {
+      "sanction": "Travail communautaire"
+    },
+    {
+      "sanction": "Réduction des avantages sociaux"
+    },
+    {
+      "sanction": "Mise à pied d'une semaine"
+    },
+    {
+      "sanction": "Excuse publique formelle"
+    },
+    {
+      "sanction": "Programme de réhabilitation avancé"
+    },
+    {
+      "sanction": "Formation obligatoire avec évaluation"
+    },
+    {
+      "sanction": "Pénalité financière modérée"
+    },
+    {
+      "sanction": "Réaffectation temporaire"
+    }
+  ],
+  "Severe": [
+    {
+      "sanction": "Licenciement"
+    },
+    {
+      "sanction": "Suspension permanente"
+    },
+    {
+      "sanction": "Action en justice"
+    },
+    {
+      "sanction": "Interdiction d'embauche dans l'entreprise"
+    },
+    {
+      "sanction": "Révocation des avantages sociaux"
+    },
+    {
+      "sanction": "Mise à pied indéfinie"
+    },
+    {
+      "sanction": "Publication du comportement répréhensible"
+    },
+    {
+      "sanction": "Exclusion de la communauté professionnelle"
+    },
+    {
+      "sanction": "Pénalité financière sévère"
+    },
+    {
+      "sanction": "Restriction d'accès aux installations de l'entreprise"
+    }
+  ]
+}

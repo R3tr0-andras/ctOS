@@ -1,0 +1,188 @@
+{
+  "Low": [
+    {
+      "infraction": "Vol à l'étalage"
+    },
+    {
+      "infraction": "Trouble sonore"
+    },
+    {
+      "infraction": "Vandalisme de biens publics"
+    },
+    {
+      "infraction": "Harcèlement verbal"
+    },
+    {
+      "infraction": "Stationnement illégal"
+    },
+    {
+      "infraction": "Littering (jet de déchets)"
+    },
+    {
+      "infraction": "Non-respect des règles de circulation"
+    },
+    {
+      "infraction": "Fraude mineure"
+    },
+    {
+      "infraction": "Usage de drogues légères"
+    },
+    {
+      "infraction": "Violation mineure du code de conduite"
+    },
+    {
+      "infraction": "Faux document"
+    },
+    {
+      "infraction": "Infraction mineure aux règles d'hygiène"
+    },
+    {
+      "infraction": "Non-respect des heures de travail"
+    },
+    {
+      "infraction": "Abus de biens sociaux"
+    },
+    {
+      "infraction": "Refus de coopération"
+    },
+    {
+      "infraction": "Violation de la politique de confidentialité"
+    },
+    {
+      "infraction": "Insulte légère"
+    },
+    {
+      "infraction": "Absence non autorisée"
+    },
+    {
+      "infraction": "Fraude à la carte de crédit"
+    },
+    {
+      "infraction": "Violation des règles de télétravail"
+    }
+  ],
+  "Medium": [
+    {
+      "infraction": "Agression légère"
+    },
+    {
+      "infraction": "Fraude fiscale mineure"
+    },
+    {
+      "infraction": "Violation de propriété privée"
+    },
+    {
+      "infraction": "Intrusion dans une zone restreinte"
+    },
+    {
+      "infraction": "Harcèlement téléphonique"
+    },
+    {
+      "infraction": "Contrefaçon de documents"
+    },
+    {
+      "infraction": "Vol de données confidentielles"
+    },
+    {
+      "infraction": "Violation des droits d'auteur"
+    },
+    {
+      "infraction": "Intimidation en milieu professionnel"
+    },
+    {
+      "infraction": "Usage abusif de biens de l'entreprise"
+    },
+    {
+      "infraction": "Diffamation"
+    },
+    {
+      "infraction": "Harceler en ligne"
+    },
+    {
+      "infraction": "Harcèlement sexuel"
+    },
+    {
+      "infraction": "Violence conjugale"
+    },
+    {
+      "infraction": "Fraude à l'assurance"
+    },
+    {
+      "infraction": "Violation des règles de sécurité"
+    },
+    {
+      "infraction": "Discrimination au travail"
+    },
+    {
+      "infraction": "Cyber-harcèlement"
+    },
+    {
+      "infraction": "Entrave à la justice"
+    },
+    {
+      "infraction": "Harcèlement moral"
+    }
+  ],
+  "Severe": [
+    {
+      "infraction": "Vol à main armée"
+    },
+    {
+      "infraction": "Agression grave"
+    },
+    {
+      "infraction": "Homicide intentionnel"
+    },
+    {
+      "infraction": "Fraude majeure"
+    },
+    {
+      "infraction": "Terrorisme"
+    },
+    {
+      "infraction": "Atteinte à la sécurité nationale"
+    },
+    {
+      "infraction": "Trafic de drogues"
+    },
+    {
+      "infraction": "Enlèvement"
+    },
+    {
+      "infraction": "Piratage informatique majeur"
+    },
+    {
+      "infraction": "Atteinte à l'intégrité physique grave"
+    },
+    {
+      "infraction": "Traite des êtres humains"
+    },
+    {
+      "infraction": "Espionnage industriel"
+    },
+    {
+      "infraction": "Détournement de fonds"
+    },
+    {
+      "infraction": "Extorsion"
+    },
+    {
+      "infraction": "Incitation à la violence"
+    },
+    {
+      "infraction": "Violation des droits de l'homme"
+    },
+    {
+      "infraction": "Sabotage"
+    },
+    {
+      "infraction": "Fraude électorale"
+    },
+    {
+      "infraction": "Génocide"
+    },
+    {
+      "infraction": "Crime contre l'humanité"
+    }
+  ]
+}

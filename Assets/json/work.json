@@ -1,0 +1,514 @@
+{
+    "emplois": [
+        {
+            "nom": "Développeur web",
+            "secteur": "Informatique",
+            "salaire_min": 40000,
+            "salaire_max": 80000
+        },
+        {
+            "nom": "Infirmière",
+            "secteur": "Santé",
+            "salaire_min": 35000,
+            "salaire_max": 60000
+        },
+        {
+            "nom": "Ingénieur civil",
+            "secteur": "Génie civil",
+            "salaire_min": 50000,
+            "salaire_max": 90000
+        },
+        {
+            "nom": "Enseignant",
+            "secteur": "Éducation",
+            "salaire_min": 30000,
+            "salaire_max": 55000
+        },
+        {
+            "nom": "Graphiste",
+            "secteur": "Arts et design",
+            "salaire_min": 35000,
+            "salaire_max": 70000
+        },
+        {
+            "nom": "Chef de projet marketing",
+            "secteur": "Marketing",
+            "salaire_min": 45000,
+            "salaire_max": 80000
+        },
+        {
+            "nom": "Technicien de maintenance",
+            "secteur": "Industrie",
+            "salaire_min": 38000,
+            "salaire_max": 65000
+        },
+        {
+            "nom": "Avocat",
+            "secteur": "Droit",
+            "salaire_min": 50000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Chef cuisinier",
+            "secteur": "Restauration",
+            "salaire_min": 35000,
+            "salaire_max": 60000
+        },
+        {
+            "nom": "Conseiller financier",
+            "secteur": "Finance",
+            "salaire_min": 55000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Architecte",
+            "secteur": "Architecture",
+            "salaire_min": 60000,
+            "salaire_max": 110000
+        },
+        {
+            "nom": "Pilote d'avion",
+            "secteur": "Transport aérien",
+            "salaire_min": 70000,
+            "salaire_max": 150000
+        },
+        {
+            "nom": "Journaliste",
+            "secteur": "Médias",
+            "salaire_min": 40000,
+            "salaire_max": 80000
+        },
+        {
+            "nom": "Psychologue",
+            "secteur": "Santé mentale",
+            "salaire_min": 45000,
+            "salaire_max": 90000
+        },
+        {
+            "nom": "Pharmacien",
+            "secteur": "Pharmacie",
+            "salaire_min": 60000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Astronome",
+            "secteur": "Astronomie",
+            "salaire_min": 70000,
+            "salaire_max": 130000
+        },
+        {
+            "nom": "Artiste de cirque",
+            "secteur": "Arts du spectacle",
+            "salaire_min": 30000,
+            "salaire_max": 70000
+        },
+        {
+            "nom": "Chercheur en biologie marine",
+            "secteur": "Biologie marine",
+            "salaire_min": 55000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Coach sportif",
+            "secteur": "Sport et fitness",
+            "salaire_min": 30000,
+            "salaire_max": 60000
+        },
+        {
+            "nom": "Agent immobilier",
+            "secteur": "Immobilier",
+            "salaire_min": 40000,
+            "salaire_max": 90000
+        },
+        {
+            "nom": "Traducteur",
+            "secteur": "Langues",
+            "salaire_min": 35000,
+            "salaire_max": 70000
+        },
+        {
+            "nom": "Électricien",
+            "secteur": "Électricité",
+            "salaire_min": 35000,
+            "salaire_max": 65000
+        },
+        {
+            "nom": "Designer industriel",
+            "secteur": "Design industriel",
+            "salaire_min": 45000,
+            "salaire_max": 80000
+        },
+        {
+            "nom": "Agent de voyage",
+            "secteur": "Tourisme",
+            "salaire_min": 35000,
+            "salaire_max": 70000
+        },
+        {
+            "nom": "Biostatisticien",
+            "secteur": "Statistiques",
+            "salaire_min": 60000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Archéologue",
+            "secteur": "Archéologie",
+            "salaire_min": 45000,
+            "salaire_max": 85000
+        },
+        {
+            "nom": "Vétérinaire",
+            "secteur": "Médecine vétérinaire",
+            "salaire_min": 55000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Géologue",
+            "secteur": "Géologie",
+            "salaire_min": 50000,
+            "salaire_max": 95000
+        },
+        {
+            "nom": "Agent de police",
+            "secteur": "Sécurité publique",
+            "salaire_min": 40000,
+            "salaire_max": 75000
+        },
+        {
+            "nom": "Physiothérapeute",
+            "secteur": "Santé",
+            "salaire_min": 45000,
+            "salaire_max": 85000
+        },
+        {
+            "nom": "Analyste financier",
+            "secteur": "Finance",
+            "salaire_min": 55000,
+            "salaire_max": 110000
+        },
+        {
+            "nom": "Géographe",
+            "secteur": "Géographie",
+            "salaire_min": 50000,
+            "salaire_max": 90000
+        },
+        {
+            "nom": "Designer de jeux vidéo",
+            "secteur": "Jeux vidéo",
+            "salaire_min": 60000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Spécialiste en cybersécurité",
+            "secteur": "Informatique",
+            "salaire_min": 70000,
+            "salaire_max": 130000
+        },
+        {
+            "nom": "Actuaire",
+            "secteur": "Assurance",
+            "salaire_min": 65000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Urbaniste",
+            "secteur": "Urbanisme",
+            "salaire_min": 55000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Physicien",
+            "secteur": "Physique",
+            "salaire_min": 60000,
+            "salaire_max": 110000
+        },
+        {
+            "nom": "Chirurgien",
+            "secteur": "Médecine",
+            "salaire_min": 120000,
+            "salaire_max": 300000
+        },
+        {
+            "nom": "Ingénieur en robotique",
+            "secteur": "Ingénierie",
+            "salaire_min": 80000,
+            "salaire_max": 150000
+        },
+        {
+            "nom": "Conseiller en orientation professionnelle",
+            "secteur": "Éducation",
+            "salaire_min": 45000,
+            "salaire_max": 80000
+        },
+        {
+            "nom": "Conseiller en relations publiques",
+            "secteur": "Communication",
+            "salaire_min": 50000,
+            "salaire_max": 90000
+        },
+        {
+            "nom": "Expert en assurance qualité",
+            "secteur": "Informatique",
+            "salaire_min": 60000,
+            "salaire_max": 110000
+        },
+        {
+            "nom": "Architecte paysagiste",
+            "secteur": "Architecture paysagère",
+            "salaire_min": 55000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Économiste",
+            "secteur": "Économie",
+            "salaire_min": 60000,
+            "salaire_max": 120000
+        },
+        {
+            "nom": "Responsable des ressources humaines",
+            "secteur": "Ressources humaines",
+            "salaire_min": 50000,
+            "salaire_max": 100000
+        },
+        {
+            "nom": "Écrivain",
+            "secteur": "Littérature",
+            "salaire_min": 30000,
+            "salaire_max": 70000
+        },
+        {
+            "nom": "Traducteur médical",
+            "secteur": "Médecine",
+            "salaire_min": 45000,
+            "salaire_max": 85000
+        },
+        {
+            "nom": "Ingénieur en aérospatiale",
+            "secteur": "Aérospatiale",
+            "salaire_min": 70000,
+            "salaire_max": 140000
+        },
+        {
+            "nom": "Médecin généraliste",
+            "secteur": "Médical",
+            "salaire_min": 80000,
+            "salaire_max": 200000
+          },
+          {
+            "nom": "Infirmière en chef",
+            "secteur": "Médical",
+            "salaire_min": 60000,
+            "salaire_max": 100000
+          },
+          {
+            "nom": "Chirurgien orthopédique",
+            "secteur": "Médical",
+            "salaire_min": 120000,
+            "salaire_max": 300000
+          },
+          {
+            "nom": "Pharmacien hospitalier",
+            "secteur": "Médical",
+            "salaire_min": 70000,
+            "salaire_max": 120000
+          },
+          {
+            "nom": "Radiologue",
+            "secteur": "Médical",
+            "salaire_min": 100000,
+            "salaire_max": 250000
+          },
+          {
+            "nom": "Infirmière spécialisée en pédiatrie",
+            "secteur": "Médical",
+            "salaire_min": 65000,
+            "salaire_max": 110000
+          },
+          {
+            "nom": "Anesthésiste",
+            "secteur": "Médical",
+            "salaire_min": 130000,
+            "salaire_max": 300000
+          },
+          {
+            "nom": "Médecin urgentiste",
+            "secteur": "Médical",
+            "salaire_min": 90000,
+            "salaire_max": 180000
+          },
+          {
+            "nom": "Technicien de laboratoire médical",
+            "secteur": "Médical",
+            "salaire_min": 50000,
+            "salaire_max": 80000
+          },
+          {
+            "nom": "Orthophoniste",
+            "secteur": "Médical",
+            "salaire_min": 55000,
+            "salaire_max": 90000
+          },
+          {
+            "nom": "Psychiatre",
+            "secteur": "Médical",
+            "salaire_min": 120000,
+            "salaire_max": 250000
+          },
+          {
+            "nom": "Sage-femme",
+            "secteur": "Médical",
+            "salaire_min": 60000,
+            "salaire_max": 90000
+          },
+          {
+            "nom": "Diététicien",
+            "secteur": "Médical",
+            "salaire_min": 45000,
+            "salaire_max": 75000
+          },
+          {
+            "nom": "Technologue en imagerie médicale",
+            "secteur": "Médical",
+            "salaire_min": 60000,
+            "salaire_max": 100000
+          },
+          {
+            "nom": "Chirurgien cardiaque",
+            "secteur": "Médical",
+            "salaire_min": 150000,
+            "salaire_max": 300000
+          },
+          {
+            "nom": "Enseignant primaire",
+            "secteur": "Éducation",
+            "salaire_min": 35000,
+            "salaire_max": 60000
+          },
+          {
+            "nom": "Professeur de mathématiques au collège",
+            "secteur": "Éducation",
+            "salaire_min": 40000,
+            "salaire_max": 70000
+          },
+          {
+            "nom": "Conseiller pédagogique",
+            "secteur": "Éducation",
+            "salaire_min": 45000,
+            "salaire_max": 80000
+          },
+          {
+            "nom": "Directeur d'école",
+            "secteur": "Éducation",
+            "salaire_min": 50000,
+            "salaire_max": 90000
+          },
+          {
+            "nom": "Professeur de sciences au lycée",
+            "secteur": "Éducation",
+            "salaire_min": 50000,
+            "salaire_max": 85000
+          },
+          {
+            "nom": "Conseiller d'orientation",
+            "secteur": "Éducation",
+            "salaire_min": 45000,
+            "salaire_max": 80000
+          },
+          {
+            "nom": "Professeur d'arts plastiques",
+            "secteur": "Éducation",
+            "salaire_min": 40000,
+            "salaire_max": 75000
+          },
+          {
+            "nom": "Instructeur de musique",
+            "secteur": "Éducation",
+            "salaire_min": 35000,
+            "salaire_max": 60000
+          },
+          {
+            "nom": "Professeur d'anglais langue étrangère",
+            "secteur": "Éducation",
+            "salaire_min": 40000,
+            "salaire_max": 70000
+          },
+          {
+            "nom": "Éducateur spécialisé",
+            "secteur": "Éducation",
+            "salaire_min": 40000,
+            "salaire_max": 75000
+          },
+          {
+            "nom": "Développeur web front-end",
+            "secteur": "Informatique",
+            "salaire_min": 50000,
+            "salaire_max": 90000
+          },
+          {
+            "nom": "Développeur web back-end",
+            "secteur": "Informatique",
+            "salaire_min": 55000,
+            "salaire_max": 95000
+          },
+          {
+            "nom": "Ingénieur logiciel",
+            "secteur": "Informatique",
+            "salaire_min": 60000,
+            "salaire_max": 110000
+          },
+          {
+            "nom": "Analyste-programmeur",
+            "secteur": "Informatique",
+            "salaire_min": 55000,
+            "salaire_max": 100000
+          },
+          {
+            "nom": "Architecte logiciel",
+            "secteur": "Informatique",
+            "salaire_min": 70000,
+            "salaire_max": 120000
+          },
+          {
+            "nom": "Développeur d'applications mobiles",
+            "secteur": "Informatique",
+            "salaire_min": 60000,
+            "salaire_max": 100000
+          },
+          {
+            "nom": "Administrateur de base de données",
+            "secteur": "Informatique",
+            "salaire_min": 65000,
+            "salaire_max": 110000
+          },
+          {
+            "nom": "Développeur full-stack",
+            "secteur": "Informatique",
+            "salaire_min": 65000,
+            "salaire_max": 120000
+          },
+          {
+            "nom": "Ingénieur DevOps",
+            "secteur": "Informatique",
+            "salaire_min": 70000,
+            "salaire_max": 130000
+          },
+          {
+            "nom": "Spécialiste en sécurité informatique",
+            "secteur": "Informatique",
+            "salaire_min": 75000,
+            "salaire_max": 140000
+          },
+          {
+            "nom": "Analyste en intelligence artificielle",
+            "secteur": "Informatique",
+            "salaire_min": 80000,
+            "salaire_max": 150000
+          },
+          {
+            "nom": "Sans emploi",
+            "secteur": "Autre",
+            "salaire_min": 0,
+            "salaire_max": 0
+          }
+    ]
+}

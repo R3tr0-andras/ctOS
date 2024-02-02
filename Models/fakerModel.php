@@ -8,30 +8,32 @@ Fonction de création des ustilisateurs faker
 But : creer des éléments dans la table user
 */
 
+global $fakeUserIds;
+
 function CreateFaker($pdo)
 {
-    $faker = Faker\Factory::Create();
+    $faker = Faker\Factory::create();
 
     try {
-        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userIsFaker ) 
-        values (:userName,:userFirstName,:userPseudo,:userPassword,:userEmail,:userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userIsFaker )";
+        $query = "INSERT INTO user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userIsFaker ) 
+            VALUES (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userIsFaker )";
 
         $createFaker = $pdo->prepare($query);
 
-        $genre = GenderGenerate();
-        $ethnic = getRandomEthnicity();
-        $jobRandom = getRandomJob();
-        $jobRandomWithSalary = getRandomJobWithSalary();
-        $phoneNumber = generateRandomPhoneNumber();
+        $genre = GenderGenerate(); // Implement this function
+        $ethnic = getRandomEthnicity(); // Implement this function
+        $jobRandom = getRandomJob(); // Implement this function
+        $jobRandomWithSalary = getRandomJobWithSalary(); // Implement this function
+        $phoneNumber = generateRandomPhoneNumber(); // Implement this function
 
         $createFaker->execute([
             'userPseudo' => $faker->lastName() . "-" . $faker->firstName(),
             'userEmail' => $faker->email(),
             'userPassword' => $faker->password(2, 16),
-            'userName' =>  $faker->lastName(),
+            'userName' => $faker->lastName(),
             'userFirstName' => $faker->firstName(),
             'userGenre' => $genre,
-            'userBirthDate' => $faker->dateTime(),
+            'userBirthDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
             'userPhoneNumber' => $phoneNumber,
             'userEthnic' => $ethnic,
             'userJobs' => $jobRandom,
@@ -40,14 +42,23 @@ function CreateFaker($pdo)
             'userIsFaker' => '1'
         ]);
 
-        // obtenir le dernier id 
+        // Get the last inserted id
         $userId = $pdo->lastInsertId();
+
+        var_dump($userId);
+
+        // Ajouter le userId au tableau associatif
+        $fakeUserIds['user_' . $userId] = $userId;
+
+        var_dump($fakeUserIds);
 
         return $userId;
     } catch (PDOException $e) {
+        // Handle the error appropriately (e.g., log it)
         $message = $e->getMessage();
         die($message);
     }
+    
 }
 
 /* 
@@ -73,11 +84,26 @@ function getRandomEthnicity()
     // Chemin vers le fichier JSON contenant les ethnies
     $cheminFichier = '../Assets/json/ethnicity.json';
 
+    // Vérifier si le fichier existe
+    if (!file_exists($cheminFichier)) {
+        return null; // ou une valeur par défaut, selon vos besoins
+    }
+
     // Lire le contenu du fichier JSON
     $contenuFichier = file_get_contents($cheminFichier);
 
+    // Vérifier si la lecture du fichier s'est bien passée
+    if ($contenuFichier === false) {
+        return null; // ou une valeur par défaut
+    }
+
     // Décoder le JSON en tableau associatif
     $ethnies = json_decode($contenuFichier, true);
+
+    // Vérifier si le décodage s'est bien passé
+    if ($ethnies === null) {
+        return null; // ou une valeur par défaut
+    }
 
     // Extraire une ethnie au hasard
     $ethnic = $ethnies['ethnies'][array_rand($ethnies['ethnies'])];
@@ -89,15 +115,25 @@ function getRandomEthnicity()
 function getRandomJob()
 {
     // Chemin vers le fichier JSON contenant les emplois
-    $cheminFichier = '../Assets\json\work.json';
+    $cheminFichier = '../Assets/json/work.json';
+
+    // Vérifier si le fichier existe
+    if (!file_exists($cheminFichier)) {
+        return null; // ou une valeur par défaut, selon vos besoins
+    }
 
     // Lire le contenu du fichier JSON
     $contenuFichier = file_get_contents($cheminFichier);
 
+    // Vérifier si la lecture du fichier s'est bien passée
+    if ($contenuFichier === false) {
+        return null; // ou une valeur par défaut
+    }
+
     // Décoder le JSON en tableau associatif
     $emplois = json_decode($contenuFichier, true);
 
-    // Vérifier si la clé 'emplois' existe dans le tableau
+    // Vérifier si la clé 'emplois' existe dans le tableau et contient des éléments
     if (isset($emplois['emplois']) && is_array($emplois['emplois']) && count($emplois['emplois']) > 0) {
         // Choisir un indice au hasard
         $randomIndex = array_rand($emplois['emplois']);
@@ -113,19 +149,30 @@ function getRandomJob()
     }
 }
 
+
 /* Obtenir un emplois depuis une liste en json */
 function getRandomJobWithSalary()
 {
     // Chemin vers le fichier JSON contenant les emplois
-    $cheminFichier = '../Assets\json\work.json';
+    $cheminFichier = '../Assets/json/work.json';
+
+    // Vérifier si le fichier existe
+    if (!file_exists($cheminFichier)) {
+        return null; // ou une valeur par défaut, selon vos besoins
+    }
 
     // Lire le contenu du fichier JSON
     $contenuFichier = file_get_contents($cheminFichier);
 
+    // Vérifier si la lecture du fichier s'est bien passée
+    if ($contenuFichier === false) {
+        return null; // ou une valeur par défaut
+    }
+
     // Décoder le JSON en tableau associatif
     $emplois = json_decode($contenuFichier, true);
 
-    // Vérifier si la clé 'emplois' existe dans le tableau
+    // Vérifier si la clé 'emplois' existe dans le tableau et contient des éléments
     if (isset($emplois['emplois']) && is_array($emplois['emplois']) && count($emplois['emplois']) > 0) {
         // Choisir un indice au hasard
         $randomIndex = array_rand($emplois['emplois']);
@@ -133,15 +180,22 @@ function getRandomJobWithSalary()
         // Récupérer les informations sur l'emploi correspondant à l'indice choisi
         $jobInfo = $emplois['emplois'][$randomIndex];
 
-        // Générer un nombre aléatoire dans l'intervalle du salaire minimal et maximal
-        $jobRandomWithSalary = rand($jobInfo['salaire_min'], $jobInfo['salaire_max']);
+        // Vérifier si les clés 'salaire_min' et 'salaire_max' existent dans l'élément
+        if (isset($jobInfo['salaire_min'], $jobInfo['salaire_max'])) {
+            // Générer un nombre aléatoire dans l'intervalle du salaire minimal et maximal
+            $jobRandomWithSalary = rand($jobInfo['salaire_min'], $jobInfo['salaire_max']);
 
-        return $jobRandomWithSalary;
+            return $jobRandomWithSalary;
+        } else {
+            // Retourner une valeur par défaut si les informations sur le salaire ne sont pas présentes
+            return null;
+        }
     } else {
         // Retourner une chaîne vide si la clé 'emplois' n'existe pas ou est vide
         return null;
     }
 }
+
 
 /* Générer un numéro de téléphone */
 function generateRandomPhoneNumber()

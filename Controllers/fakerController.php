@@ -11,7 +11,7 @@ if ($uri === '/fakerCreator') {
         if (isset($_GET['submit'])) {
             $nombre = $_GET["nombre"];
 
-            for ($i = 0; $i < $nombre; $i++) {
+            for ($i = 0; $i == $nombre; $i++) {
                 CreateFaker($pdo);
                 CreateCriminalFaker($pdo, $userId);
                 CreateRecentThing ($pdo, $userId);

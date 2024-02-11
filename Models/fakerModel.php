@@ -22,9 +22,8 @@ function CreateFaker($pdo)
 
         $genre = GenderGenerate(); // Implement this function
         $ethnic = getRandomEthnicity(); // Implement this function
-        $jobRandom = getRandomJob(); // Implement this function
-        $jobRandomWithSalary = getRandomJobWithSalary(); // Implement this function
         $phoneNumber = generateRandomPhoneNumber(); // Implement this function
+        $infosEmploi = getRandomJobAndSalary();
 
         $createFaker->execute([
             'userPseudo' => $faker->lastName() . "-" . $faker->firstName(),
@@ -36,29 +35,20 @@ function CreateFaker($pdo)
             'userBirthDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
             'userPhoneNumber' => $phoneNumber,
             'userEthnic' => $ethnic,
-            'userJobs' => $jobRandom,
-            'userIncome' => $jobRandomWithSalary,
+            'userJobs' => $infosEmploi['emploi'],
+            'userIncome' => $infosEmploi['moyenne_salaire'],
             'userRole' => 'user',
             'userIsFaker' => '1'
         ]);
 
-        // Get the last inserted id
         $userId = $pdo->lastInsertId();
-
-        var_dump($userId);
-
-        // Ajouter le userId au tableau associatif
-        $fakeUserIds['user_' . $userId] = $userId;
-
-        var_dump($fakeUserIds);
-
         return $userId;
+
     } catch (PDOException $e) {
         // Handle the error appropriately (e.g., log it)
         $message = $e->getMessage();
         die($message);
     }
-    
 }
 
 /* 
@@ -111,91 +101,46 @@ function getRandomEthnicity()
     return $ethnic;
 }
 
-/* Obtenir un emplois depuis une liste en json */
-function getRandomJob()
+//Obtenir un travail et un salaire
+function getRandomJobAndSalary()
 {
-    // Chemin vers le fichier JSON contenant les emplois
-    $cheminFichier = '../Assets/json/work.json';
+    // Lire le contenu du fichier JSON en tant que chaîne
+    $contenuJson = file_get_contents('Assets\json\work.json');
 
-    // Vérifier si le fichier existe
-    if (!file_exists($cheminFichier)) {
-        return null; // ou une valeur par défaut, selon vos besoins
+    // Décoder la chaîne JSON en un tableau PHP associatif
+    $tableauJson = json_decode($contenuJson, true);
+
+    // Vérifier si le décodage JSON s'est bien passé
+    if ($tableauJson === null) {
+        // Gérer les erreurs de décodage JSON ici
+        die('Erreur de décodage JSON.');
     }
 
-    // Lire le contenu du fichier JSON
-    $contenuFichier = file_get_contents($cheminFichier);
+    // Extraire le tableau des emplois
+    $emplois = $tableauJson['emplois'];
 
-    // Vérifier si la lecture du fichier s'est bien passée
-    if ($contenuFichier === false) {
-        return null; // ou une valeur par défaut
-    }
+    // Choisir un emploi aléatoire du tableau
+    $emploiAleatoire = $emplois[array_rand($emplois)];
 
-    // Décoder le JSON en tableau associatif
-    $emplois = json_decode($contenuFichier, true);
+    // Récupérer les salaires min et max
+    $salaireMin = $emploiAleatoire['salaire_min'];
+    $salaireMax = $emploiAleatoire['salaire_max'];
 
-    // Vérifier si la clé 'emplois' existe dans le tableau et contient des éléments
-    if (isset($emplois['emplois']) && is_array($emplois['emplois']) && count($emplois['emplois']) > 0) {
-        // Choisir un indice au hasard
-        $randomIndex = array_rand($emplois['emplois']);
+    // Calculer la moyenne des salaires
+    $moyenneSalaire = ($salaireMin + $salaireMax) / 2;
 
-        // Récupérer le nom de l'emploi correspondant à l'indice choisi
-        $jobRandom = $emplois['emplois'][$randomIndex]['nom'];
+    // Créer un tableau associatif avec les informations
+    $resultat = [
+        'emploi' => $emploiAleatoire['nom'],
+        'secteur' => $emploiAleatoire['secteur'],
+        'salaire_min' => $salaireMin,
+        'salaire_max' => $salaireMax,
+        'moyenne_salaire' => $moyenneSalaire,
+    ];
 
-        // Retourner l'emploi au format demandé
-        return $jobRandom;
-    } else {
-        // Retourner une chaîne vide si la clé 'emplois' n'existe pas ou est vide
-        return null;
-    }
+    // Retourner le résultat
+    return $resultat;
 }
-
-
-/* Obtenir un emplois depuis une liste en json */
-function getRandomJobWithSalary()
-{
-    // Chemin vers le fichier JSON contenant les emplois
-    $cheminFichier = '../Assets/json/work.json';
-
-    // Vérifier si le fichier existe
-    if (!file_exists($cheminFichier)) {
-        return null; // ou une valeur par défaut, selon vos besoins
-    }
-
-    // Lire le contenu du fichier JSON
-    $contenuFichier = file_get_contents($cheminFichier);
-
-    // Vérifier si la lecture du fichier s'est bien passée
-    if ($contenuFichier === false) {
-        return null; // ou une valeur par défaut
-    }
-
-    // Décoder le JSON en tableau associatif
-    $emplois = json_decode($contenuFichier, true);
-
-    // Vérifier si la clé 'emplois' existe dans le tableau et contient des éléments
-    if (isset($emplois['emplois']) && is_array($emplois['emplois']) && count($emplois['emplois']) > 0) {
-        // Choisir un indice au hasard
-        $randomIndex = array_rand($emplois['emplois']);
-
-        // Récupérer les informations sur l'emploi correspondant à l'indice choisi
-        $jobInfo = $emplois['emplois'][$randomIndex];
-
-        // Vérifier si les clés 'salaire_min' et 'salaire_max' existent dans l'élément
-        if (isset($jobInfo['salaire_min'], $jobInfo['salaire_max'])) {
-            // Générer un nombre aléatoire dans l'intervalle du salaire minimal et maximal
-            $jobRandomWithSalary = rand($jobInfo['salaire_min'], $jobInfo['salaire_max']);
-
-            return $jobRandomWithSalary;
-        } else {
-            // Retourner une valeur par défaut si les informations sur le salaire ne sont pas présentes
-            return null;
-        }
-    } else {
-        // Retourner une chaîne vide si la clé 'emplois' n'existe pas ou est vide
-        return null;
-    }
-}
-
 
 /* Générer un numéro de téléphone */
 function generateRandomPhoneNumber()
@@ -248,16 +193,16 @@ function CreateCriminalFaker($pdo, $userId)
 
             $CriminalFaker = $pdo->prepare($query);
 
-            $infraction = getInfraction();
+            $resultat = getInfraction();
             $severity = $infraction['severity'];
-            $warning = getSanction($severity);
+            //$warning = getSanction($severity);
 
             $CriminalFaker->execute([
                 'userId' => $userId,
-                'recordReason' => $infraction['infraction'],
+                'recordReason' => $resultat['infraction'],
                 'recordDate' => $faker->dateTime(),
-                'recordWarn' => $warning,
-                'recordDangerousness' => $infraction['severity']
+                'recordWarn' => null,
+                'recordDangerousness' => $resultat['categorie']
             ]);
         }
     } catch (PDOException $e) {
@@ -266,39 +211,36 @@ function CreateCriminalFaker($pdo, $userId)
     }
 }
 
-/* Obtenir une infraction */
 function getInfraction()
 {
-    // Charger le contenu du fichier JSON
-    $jsonContent = file_get_contents('../Assets\json\recordReason.json');
+    // Lire le contenu du fichier JSON en tant que chaîne
+    $contenuJson = file_get_contents('Assets/json/recordReason.json');
 
-    // Décoder le JSON en tableau associatif
-    $infractionsData = json_decode($jsonContent, true);
+    // Décoder la chaîne JSON en un tableau PHP associatif
+    $tableauJson = json_decode($contenuJson, true);
 
-    // Choisir une catégorie d'infraction en fonction de la probabilité
-    $randomPercentage = rand(0, 99);
-    $selectedCategory = null;
-
-    if ($randomPercentage < 5) {
-        $selectedCategory = "Severe";
-    } elseif ($randomPercentage < 20) {
-        $selectedCategory = "Medium";
-    } elseif ($randomPercentage < 60) {
-        $selectedCategory = "Low";
+    // Vérifier si le décodage JSON s'est bien passé
+    if ($tableauJson === null) {
+        // Gérer les erreurs de décodage JSON ici
+        die('Erreur de décodage JSON.');
     }
 
-    // Si une catégorie a été déterminée, choisir une infraction aléatoire dans cette catégorie
-    if ($selectedCategory !== null && isset($infractionsData[$selectedCategory]) && is_array($infractionsData[$selectedCategory])) {
-        $selectedInfraction = $infractionsData[$selectedCategory][array_rand($infractionsData[$selectedCategory])];
-    }
+    // Choisir aléatoirement une catégorie (Low, Medium, Severe)
+    $categorieAleatoire = array_rand($tableauJson);
 
-    return [
-        "infraction" => $selectedInfraction['infraction'],
-        "severity" => $selectedCategory
-    ];
+    // Choisir aléatoirement une infraction dans la catégorie sélectionnée
+    $infractionAleatoire = $tableauJson[$categorieAleatoire][array_rand($tableauJson[$categorieAleatoire])];
+
+    // Retourner la catégorie et l'infraction choisies
+    return array(
+        'categorie' => $categorieAleatoire,
+        'infraction' => $infractionAleatoire['infraction']
+    );
 }
 
-/* Obtenir une sanction pour le crime */
+/*
+
+//Obtenir une sanction pour le crime 
 function getSanction($severity)
 {
     // Charger le contenu du fichier JSON des sanctions
@@ -320,12 +262,16 @@ function getSanction($severity)
     }
 }
 
+*/
+
+
 /* 
 Lib de fonction pour génération chose récente
 ---------------------------------------------------
 */
 
-function CreateRecentThing ($pdo, $userId) {
+function CreateRecentThing($pdo, $userId)
+{
 
     $faker = Faker\Factory::Create();
 
@@ -343,7 +289,7 @@ function CreateRecentThing ($pdo, $userId) {
             'userId' => $userId,
             'recentDate' => $faker->dateTime(),
             'recentContent' => $recent
-            
+
         ]);
 
         // obtenir le dernier id 
@@ -354,16 +300,28 @@ function CreateRecentThing ($pdo, $userId) {
         $message = $e->getMessage();
         die($message);
     }
-
 }
 
 /* Obtenir un fait récent sur l'utilisateur faker */
-function GetRecent () {
+function GetRecent()
+{
     // Charger le contenu du fichier JSON des sanctions
-    $jsonContent = file_get_contents('../Assets\json\recent.json');
+    $jsonContent = file_get_contents('Assets\json\recent.json');
+
+    // Vérifier si le chargement du fichier a réussi
+    if ($jsonContent === false) {
+        // Gérer l'erreur, par exemple en affichant un message ou en lançant une exception
+        die('Erreur lors du chargement du fichier JSON');
+    }
 
     // Décoder le JSON en tableau associatif
     $recentData = json_decode($jsonContent, true);
+
+    // Vérifier si le décodage JSON a réussi
+    if ($recentData === null) {
+        // Gérer l'erreur, par exemple en affichant un message ou en lançant une exception
+        die('Erreur lors du décodage du JSON');
+    }
 
     // Extraire aléatoirement une information du tableau
     $recent = $recentData[array_rand($recentData)];

@@ -7,7 +7,7 @@ require_once "Models\searchModel.php";
 $uri = $_SERVER['REQUEST_URI'];
 
 // Gestion des routes
-if ($uri === '/searching') {
+if ($uri === '/tracking') {
     // Afficher la barre de recherche
     if (isset($_POST['btnEnvoi'])) {
         // Utiliser la barre de recherche

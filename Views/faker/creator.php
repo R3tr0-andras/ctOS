@@ -1,13 +1,5 @@
-<form method="get">
-    <label for="nombre">Entrez un nombre :</label>
-    <input type="number" id="nombre" name="nombre" required>
-    <br>
-    <button name="submit">Envoyer</button>
+<form method="post" action="">
+    <!-- Ajouter un bouton et un champ caché pour indiquer que le formulaire a été soumis -->
+    <input type="hidden" name="startFaker" value="1">
+    <button type="submit">Démarrer la fonction</button>
 </form>
-
-<?php
-// Accéder aux userIds stockés dans le tableau associatif
-foreach ($fakeUserIds as $key => $userId) {
-    echo "User key: " . $key . ", User ID: " . $userId . "\n";
-}
-?>

@@ -139,7 +139,10 @@
                 <option value="">Noir, Américain, Afro-Vénézuélien (Amérique du Sud)</option>
             </optgroup>
         </select>
-
+    </div>
+    <div>
+        <label for="file">Fichier</label>
+        <input type="file" name="file" value="">
     </div>
     <!-- -->
     <div>

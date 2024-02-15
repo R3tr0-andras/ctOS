@@ -20,9 +20,9 @@ function CreateFaker($pdo)
 
         $createFaker = $pdo->prepare($query);
 
-        $genre = GenderGenerate(); // Implement this function
-        $ethnic = getRandomEthnicity(); // Implement this function
-        $phoneNumber = generateRandomPhoneNumber(); // Implement this function
+        $genre = GenderGenerate(); 
+        $ethnic = getRandomEthnicity(); 
+        $phoneNumber = generateRandomPhoneNumber(); 
         $infosEmploi = getRandomJobAndSalary();
 
         $createFaker->execute([
@@ -43,9 +43,7 @@ function CreateFaker($pdo)
 
         $userId = $pdo->lastInsertId();
         return $userId;
-
     } catch (PDOException $e) {
-        // Handle the error appropriately (e.g., log it)
         $message = $e->getMessage();
         die($message);
     }
@@ -179,29 +177,25 @@ Lib de fonction pour génération de casier criminel pour faker
 function CreateCriminalFaker($pdo, $userId)
 {
     $faker = Faker\Factory::Create();
-
-    $userId = CreateFaker($userId);
+    //var_dump($userId);
 
     try {
 
-        // Obtenir un nombre aléatoire entre 0 et 13
+        $query = "insert into criminal_record (userId, recordReason, recordDate, recordDangerousness) 
+            values (:userId, :recordReason, :recordDate, :recordDangerousness)";
+
+        $CriminalFaker = $pdo->prepare($query);
+
         $repeatCount = rand(0, 13);
 
-        for ($$i = 0; $i < $repeatCount; $i++) {
-            $query = "insert into criminal_record (userId, recordReason, recordDate, recordWarn, recordDangerousness) 
-            values (:userId,:recordReason, :recordDate, :recordWarn, :recordDangerousness";
-
-            $CriminalFaker = $pdo->prepare($query);
+        for ($j = 0; $j < $repeatCount; $j++) {
 
             $resultat = getInfraction();
-            $severity = $infraction['severity'];
-            //$warning = getSanction($severity);
 
             $CriminalFaker->execute([
                 'userId' => $userId,
                 'recordReason' => $resultat['infraction'],
-                'recordDate' => $faker->dateTime(),
-                'recordWarn' => null,
+                'recordDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
                 'recordDangerousness' => $resultat['categorie']
             ]);
         }
@@ -238,33 +232,6 @@ function getInfraction()
     );
 }
 
-/*
-
-//Obtenir une sanction pour le crime 
-function getSanction($severity)
-{
-    // Charger le contenu du fichier JSON des sanctions
-    $jsonContent = file_get_contents('../Assets\json\warn.json');
-
-    // Décoder le JSON en tableau associatif
-    $sanctionsData = json_decode($jsonContent, true);
-
-    // Vérifier si la sévérité est présente dans le tableau des sanctions
-    if (isset($sanctionsData[$severity]) && is_array($sanctionsData[$severity])) {
-        // Choisir une sanction aléatoire dans la catégorie de sévérité
-        $selectedSanction = $sanctionsData[$severity][array_rand($sanctionsData[$severity])];
-
-        // Retourner la sanction
-        return $selectedSanction['sanction'];
-    } else {
-        // Retourner une valeur par défaut en cas d'erreur
-        return "Sanction non spécifiée";
-    }
-}
-
-*/
-
-
 /* 
 Lib de fonction pour génération chose récente
 ---------------------------------------------------
@@ -274,8 +241,7 @@ function CreateRecentThing($pdo, $userId)
 {
 
     $faker = Faker\Factory::Create();
-
-    $userId = CreateFaker($userId);
+    var_dump($userId);
 
     try {
         $query = "insert into recent(userId, recentDate, recentContent) 
@@ -287,15 +253,11 @@ function CreateRecentThing($pdo, $userId)
 
         $createFaker->execute([
             'userId' => $userId,
-            'recentDate' => $faker->dateTime(),
-            'recentContent' => $recent
+            'recentDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
+            'recentContent' => $recent['data']
 
         ]);
 
-        // obtenir le dernier id 
-        $userId = $pdo->lastInsertId();
-
-        return $userId;
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
@@ -324,7 +286,7 @@ function GetRecent()
     }
 
     // Extraire aléatoirement une information du tableau
-    $recent = $recentData[array_rand($recentData)];
-
+    $recent['data'] = $recentData[array_rand($recentData)];
+    var_dump($recent);
     return $recent;
 }

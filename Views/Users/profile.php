@@ -49,7 +49,7 @@
         margin-top: 10px;
     }
 
-    img {
+    .profileImg {
         width: 150px;
         height: 150px;
         border-radius: 50%;
@@ -107,6 +107,6 @@
 
     <!-- User profile image (round) -->
     <div>
-        <img src="Assets\Pictures\fakerProfile\<?php echo $_SESSION['user']->userProfileImage; ?>" alt="">
+        <img src="Assets\Pictures\fakerProfile\<?php echo $_SESSION['user']->userProfileImage; ?>" alt="" class="profileImg">
     </div>
 </section>

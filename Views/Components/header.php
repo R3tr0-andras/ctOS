@@ -1,4 +1,4 @@
-<img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo">
+<img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo" class="logoImg">
 <nav>
     <!-- si $_SESSION est connecté alors afficher-->
     <?php if (isset($_SESSION['user'])) : ?>

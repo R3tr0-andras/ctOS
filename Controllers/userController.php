@@ -9,15 +9,16 @@ $uri = $_SERVER['REQUEST_URI'];
 // Gestion des routes
 if ($uri === '/profil') {
 
+    test($pdo, $userId);
+
     $title = "Online profile";
     $template = "Views\Users\profile.php";
     require_once("Views\base.php");
 } 
 
 elseif ($uri == "/register") {
-
     if (isset($_POST['btnEnvoi'])) {
-        if (connexionUser($pdo)) {
+        if (CreateUser($pdo)) {
             $title = "Log In";
             $template = "Views\Users\connexion.php";
             require_once("Views\base.php");
@@ -35,17 +36,13 @@ elseif ($uri == "/register") {
 } 
 
 elseif ($uri === "/login") {
-    
     if (isset($_POST['btnEnvoi'])) {
-        
         if (connexionUser($pdo)) {
-            
             $title = "Home page";
             $template = "Views\home.php";
             require_once("Views\base.php");
             //var_dump($_SESSION);
         } else {
-            
             $error_message = "Login failed.";
             $title = "Log In";
             $template = "Views\Users\connexion.php";

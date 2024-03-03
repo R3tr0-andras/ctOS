@@ -24,8 +24,8 @@ But : creer des éléments dans la table user
 function CreateUser($pdo)
 {
     try {
-        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userIsFaker ) 
-        values (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userIsFaker)";
+        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome ) 
+        values (:userName,:userFirstName,:userPseudo,:userPassword,:userEmail,:userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome )";
 
         $createUser = $pdo->prepare($query);
 
@@ -41,8 +41,7 @@ function CreateUser($pdo)
             'userEthnic' => $_POST['Ethnie'],
             'userJobs' => $_POST['Job'],
             'userIncome' => $_POST['Income'],
-            'userRole' => 'user',
-            'userIsFaker' => '0'
+            'userRole' => 'user'
         ]);
     } catch (PDOException $e) {
         $message = $e->getMessage();
@@ -62,9 +61,9 @@ function connexionUser($pdo)
         $query = "select * from user where userPseudo=:userPseudo and userEmail=:userEmail and userPassword=:userPassword";
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
-            'userPseudo' => $_POST['Pseudo'],
-            'userEmail' => $_POST['Mail'],
-            'userPassword' => $_POST['Password'],
+            'userPseudo' => $_POST['pseudo'],
+            'userEmail' => $_POST['email'],
+            'userPassword' => $_POST['password'],
         ]);
         $user = $connectUser->fetch();
         //var_dump($user);

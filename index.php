@@ -12,3 +12,4 @@ require_once("Controllers/indexController.php");
 require_once("Controllers/userController.php");
 require_once("Controllers/searchController.php");
 require_once("Controllers/fakerController.php");
+

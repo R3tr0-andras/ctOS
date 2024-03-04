@@ -2,7 +2,7 @@
 
 # Watch Dogs CTOS (Central Operating System)
 
-![Watch Dogs Logo](Assets\Pictures\Blume_black.png)
+![Watch Dogs Logo](ctOS/Assets/Pictures/Blume_black.png)
 
 Bienvenue dans le monde du CTOS, le système d'exploitation centralisé qui contrôle la ville dans le jeu vidéo Watch Dogs. Ce projet GitHub vise à fournir des informations détaillées sur le CTOS, son fonctionnement et comment il est représenté dans le jeu.
 

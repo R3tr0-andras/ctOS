@@ -1,8 +1,8 @@
-# Bugs
+# Bug
 - L'incription crée deux utilisateur à la fois et de temps en temps laisse une ligne vide dans la table user
 - La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
 
-# A faire
+# To do
 - Le coté visuel est pas dutout fini
 - Coté faker le remplissage d'autres table est pas fini
 - Intégrer chartLib au projet

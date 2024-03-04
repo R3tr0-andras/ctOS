@@ -20,9 +20,9 @@ function CreateFaker($pdo)
 
         $createFaker = $pdo->prepare($query);
 
-        $genre = GenderGenerate(); 
-        $ethnic = getRandomEthnicity(); 
-        $phoneNumber = generateRandomPhoneNumber(); 
+        $genre = GenderGenerate();
+        $ethnic = getRandomEthnicity();
+        $phoneNumber = generateRandomPhoneNumber();
         $infosEmploi = getRandomJobAndSalary();
 
         $createFaker->execute([
@@ -254,10 +254,9 @@ function CreateRecentThing($pdo, $userId)
         $createFaker->execute([
             'userId' => $userId,
             'recentDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
-            'recentContent' => $recent['data']
+            'recentContent' => $recent
 
         ]);
-
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
@@ -285,8 +284,9 @@ function GetRecent()
         die('Erreur lors du décodage du JSON');
     }
 
-    // Extraire aléatoirement une information du tableau
-    $recent['data'] = $recentData[array_rand($recentData)];
-    var_dump($recent);
-    return $recent;
+    // Extraire aléatoirement une information du tableau "recent"
+    $recent = $recentData['recent'][array_rand($recentData['recent'])];
+
+    // Retourner la valeur de la clé "thing"
+    return $recent['thing'];
 }

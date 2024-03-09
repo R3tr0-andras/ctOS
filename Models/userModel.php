@@ -122,23 +122,3 @@ function deleteUser($pdo, $userId)
         die($message);
     }
 }
-
-/* 
-Fonction de récupération de couleur du header
----------------------------------------
-But : récupération de la couleur du header
-*/
-
-function test($pdo, $userId) {
-    try {
-        $query = "SELECT * FROM criminal_record where userId = $userId";
-        $criminelUser = $pdo->prepare($query);
-    
-        $userColor = $criminelUser->fetch();
-        
-        
-    } catch (PDOException $e) {
-        $message = $e->getmessage();
-        die($message);
-    }
-}

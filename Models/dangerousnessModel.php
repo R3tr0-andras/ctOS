@@ -1,124 +1,98 @@
 <?php
-// Fonction pour générer un tableau avec les pourcentages et les couleurs
-function generateCrimeTable($totalInfractions, $highCriminality, $mediumCriminality, $lowCriminality) {
-    // Calcul des pourcentages
-    $percentageHigh = calculatePercentage($totalInfractions, $highCriminality);
-    $percentageMedium = calculatePercentage($totalInfractions, $mediumCriminality);
-    $percentageLow = calculatePercentage($totalInfractions, $lowCriminality);
-
-    // Attribution des couleurs
-    $colorHigh = determineColor('Haute');
-    $colorMedium = determineColor('Moyenne');
-    $colorLow = determineColor('Basse');
-
-    // Construction du tableau associatif
-    $crimeTable = array(
-        'Haute' => array(
-            'percentage' => $percentageHigh,
-            'color' => $colorHigh
-        ),
-        'Moyenne' => array(
-            'percentage' => $percentageMedium,
-            'color' => $colorMedium
-        ),
-        'Basse' => array(
-            'percentage' => $percentageLow,
-            'color' => $colorLow
-        )
-    );
-
-    return $crimeTable;
-}
 
 /* Obtenir les infraction pour déterminer une couleur */
-function getInfractions($pdo) {
-    // Vérifier si userId est défini dans la session
-    if(isset($_SESSION["userId"])) {
-        $userId = $_SESSION["userId"];
+function getInfractions($pdo)
+{
+    try {
+        // Récupérer l'ID de l'utilisateur à partir de la session
+        $userId = $_SESSION["user"]->userId;
 
-        // Échapper les données pour éviter les injections SQL
-        $escapedUserId = $pdo->real_escape_string($userId);
+        // Préparer la requête SQL pour récupérer uniquement la colonne recordDangerousness de l'utilisateur
+        $query = "SELECT recordDangerousness FROM criminal_record WHERE userId = :userId";
+        $co = $pdo->prepare($query);
+
+        // Lier le paramètre userId à la requête préparée
+        $co->bindParam(':userId', $userId, PDO::PARAM_INT);
+
+        // Exécuter la requête préparée
+        $co->execute();
+
+        // Récupérer toutes les valeurs de la colonne recordDangerousness
+        $dangerousness = $co->fetchAll(PDO::FETCH_COLUMN);
+
+        // Retourner les niveaux de dangerosité récupérés
+        return $dangerousness;
+
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+/* Fonction pour calculer le pourcentage de criminalité en tenant compte du niveau de dangerosité des infractions */
+function calculateCrimePercentage($pdo)
+{
+    try {
         
-        // Construction de la requête SQL
-        $query = "SELECT * FROM criminal_record WHERE userId = $escapedUserId";
+        // Récupérer les niveaux de dangerosité des infractions
+        $dangerousness = getInfractions($pdo);
 
-        // Exécution de la requête
-        $result = $pdo->query($query);
+        // Compter le nombre total d'infractions
+        $totalInfractions = count($dangerousness);
 
-        // Vérification s'il y a des résultats
-        if ($result->num_rows > 0) {
-            // Tableau pour stocker les résultats
-            $infractions = array();
+        // Compter le nombre d'infractions dans chaque niveau de dangerosité
+        $countPerDangerousness = array_count_values($dangerousness);
 
-            // Récupération des résultats
-            while ($row = $result->fetch_assoc()) {
-                $infractions[] = $row;
-            }
+        // Poids attribués à chaque niveau de dangerosité
+        $weights = array(
+            'Low' => 0.50,
+            'Medium' => 0.30,
+            'Severe' => 0.20
+        );
 
-            return $infractions;
-        } else {
-            // Aucune infraction trouvée
-            return array();
+        // Calculer le pourcentage global en tenant compte des poids
+        $overallPercentage = 0;
+        foreach ($countPerDangerousness as $dangerousness => $count) {
+            $percentage = ($count / $totalInfractions) * 100;
+            $overallPercentage += $percentage * $weights[$dangerousness];
         }
-    } else {
-        // userId n'est pas défini dans la session
-        return array();
+
+        // Retourner le pourcentage global
+        return $overallPercentage;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
     }
 }
 
-function countAndAssessCriminality($infractions) {
-    // Initialisation des compteurs
-    $totalInfractions = count($infractions);
-    $highCriminality = 0;
-    $mediumCriminality = 0;
-    $lowCriminality = 0;
+/* Ceci était très casse pied, plus JAMAIS JE RETOUCHE A CA */
+function getColorFromPercentage($pdo) {
 
-    // Parcours des infractions pour évaluer leur degré de criminalité
-    foreach ($infractions as $infraction) {
-        switch ($infraction['recordDangerousness']) {
-            case 'Haute':
-                $highCriminality++;
-                break;
-            case 'Moyenne':
-                $mediumCriminality++;
-                break;
-            case 'Basse':
-                $lowCriminality++;
-                break;
-            default:
-                break;
-        }
+    $percentage = calculateCrimePercentage($pdo);
+
+    // Convertir le pourcentage en une valeur entre 0 et 255 pour représenter une composante RVB
+    $rgb_value = round(($percentage / 100) * 255);
+
+    // Pourcentage bas, renvoie une teinte de vert à rouge
+    if ($percentage < 50) {
+        // Valeur verte = maximale
+        $green = 255; 
+        // Augmente progressivement la valeur en rouge
+        $red = $rgb_value * 2; 
+    } 
+    // Pourcentage haut, renvoie une teinte de rouge à vert
+    else { 
+        // Valeur en rouge = maximale
+        $red = 255; 
+        // Diminue progressivement la valeur en verte
+        $green = 255 - ($rgb_value - 128) * 2; 
     }
 
-    // Construction du résultat sous forme d'array associatif
-    $result = array(
-        'totalInfractions' => $totalInfractions,
-        'highCriminality' => $highCriminality,
-        'mediumCriminality' => $mediumCriminality,
-        'lowCriminality' => $lowCriminality
-    );
+    // Formater les composantes RVB en code hexadécimal
+    // Merci la doc w3school, je vous aimes
+    $red_hex = str_pad(dechex($red), 2, "0", STR_PAD_LEFT);
+    $green_hex = str_pad(dechex($green), 2, "0", STR_PAD_LEFT);
+    $blue_hex = "00"; // Pas de bleu
 
-    return $result;
-}
-
-function calculatePercentage($total, $part) {
-    if ($total == 0) {
-        return 0;
-    } else {
-        return ($part / $total) * 100;
-    }
-}
-
-// Fonction pour déterminer la couleur en fonction du degré de criminalité
-function determineColor($criminalityLevel) {
-    switch ($criminalityLevel) {
-        case 'Haute':
-            return 'red';
-        case 'Moyenne':
-            return 'orange';
-        case 'Basse':
-            return 'green';
-        default:
-            return 'black'; // Couleur par défaut si le niveau n'est pas reconnu
-    }
+    return "#$red_hex$green_hex$blue_hex";
 }

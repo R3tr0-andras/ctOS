@@ -1,5 +1,6 @@
 # Bug
 - La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
+    update : je pense plutot m'imoler par le feu ^-^
 - Le profil ne s'affiche pas
 - La barre de recherche ne s'affiche pas
 - Le footer est en bas mais légérement en haut
@@ -10,6 +11,7 @@
 - Intégrer chartLib au projet
 - Mettre en responsiv
 - mettre en place la couleur par rapport à la dangerosié
+- les images de profil
 
 
 # Bonus

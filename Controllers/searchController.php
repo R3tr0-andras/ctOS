@@ -7,29 +7,27 @@ require_once "Models\searchModel.php";
 $uri = $_SERVER['REQUEST_URI'];
 
 // Gestion des routes
-if ($uri === '/tracking') {
-    // Afficher la barre de recherche
-    if (isset($_POST['btnEnvoi'])) {
-        // Utiliser la barre de recherche
-        $userID = searching($pdo);
-        //var_dump($userID);
-        if (searching($pdo)) {
-            // recherche réussie
-            $title = "Searching Complete";
-            $template = "Views\search\searched.php";
-            require_once("Views\base.php");
-        } else {
-            $title = "Page d'accueil";
-            $template = "Views\home.php";
-            require_once("Views\base.php");
-        }
+if ($uri === '/searching') {
+    // Vérification si la requête est une requête AJAX
+    if (isset($_GET['searchBTN'])) {
+        // Appeler la fonction de recherche
+        $results = searching($pdo, $_GET['searchText']);
+
+        // Définir le titre de la page
+        $title = "Searching";
+
+        // Définir le chemin du template à utiliser pour afficher la barre de recherche et les résultats
+        $template = "Views\search\searchingbar.php";
+
+        // Inclure le fichier de template
+        require_once("Views\base.php");
     } else {
-        // Afficher la barre de recherche
+        // Si ce n'est pas une requête AJAX, afficher la page normale
         $title = "Searching";
         $template = "Views\search\searchingbar.php";
         require_once("Views\base.php");
     }
-}else if ($uri === '/searching/Searched') {
+} else if ($uri === '/searching/Searched') {
     if ($uri === '/searching/Searched/Profile') {
         //SearchedProfile($pdo);
 
@@ -39,7 +37,6 @@ if ($uri === '/tracking') {
     } else if ($uri === '/searching/Searched/History') {
         //SearchedHistory($pdo);
 
-    }else {
-
+    } else {
     }
 }

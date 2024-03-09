@@ -1,29 +1,21 @@
 <?php
+// Connecter un utilisateur
+function searching($pdo, $searchTerm) {
+    // Nettoyez les données entrantes pour éviter les attaques par injection SQL
+    $searchTerm = htmlspecialchars($searchTerm);
+        
+    // Préparez la requête SQL pour rechercher dans la base de données
+    $stmt = $pdo->prepare("SELECT * FROM user WHERE userName LIKE ? OR userFirstName LIKE ?");
+    
+    // Exécutez la requête avec le terme de recherche comme paramètre
+    $stmt->execute(["%$searchTerm%", "%$searchTerm%"]);
 
-//Connecter un utilisateur
-function searching($pdo)
-{
-    try {
-        if(isset($_POST['search']) and !empty($_POST['search'])){
-            $searcher = htmlspecialchars($_POST['search']);
+    // Débogage : Affichez la requête SQL pour vérifier sa validité
+    echo "Requête SQL exécutée : " . $stmt->queryString . "<br>";
 
-            $query = 'Select * from user where userName like "%'.$searcher.'%" order by userId desc';
+    // Récupérez les résultats de la recherche
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $searchUser = $pdo->prepare($query);
-
-            $searchUser->execute();
-        }
-        $user = $searchUser->fetch();
-        var_dump($user);
-
-        if (!$user) {
-            return false;
-        } else {
-            // Récupérer l'utilisateur trouvé
-            return $user;
-        }
-    } catch (PDOException $e) {
-        $message = $e->getMessage();
-        die($message);
-    }
+    // Retournez les résultats de la recherche
+    return $results;
 }

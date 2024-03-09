@@ -1,4 +1,4 @@
-<a href="/index">
+<a href="/index.php">
     <img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo" class="logoImg">
 </a>
 <nav>

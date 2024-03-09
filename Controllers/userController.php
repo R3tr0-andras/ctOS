@@ -9,8 +9,6 @@ $uri = $_SERVER['REQUEST_URI'];
 // Gestion des routes
 if ($uri === '/profil') {
 
-    test($pdo, $userId);
-
     $title = "Online profile";
     $template = "Views\Users\profile.php";
     require_once("Views\base.php");

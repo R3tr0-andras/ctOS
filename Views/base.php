@@ -1,14 +1,14 @@
-<?php 
-    $imageBackground;
- if (isset($_SESSION['user'])) {
-    $couleurBackground = "#0080FF"; 
- }
-
- else {
-    $couleurBackground = "#000000"; 
- }
-   
+<?php
+    $imageBackground = '';
+    if (isset($_SESSION['user'])) {
+        $couleurBackground = getColorFromPercentage($pdo);
+        $crimePourcentage = calculateCrimePercentage($pdo);
+    } else {
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +22,6 @@
     <link rel="stylesheet" href="../Assets\Css\keyframes.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
-        /* Partie de couleur Fixe */
-
         header {
             background-color: <?= $couleurBackground; ?>;
         }
@@ -35,7 +33,6 @@
         footer {
             background-color: <?= $couleurBackground; ?>;
         }
-
     </style>
 
     <!-- Titre et icon-->
@@ -49,6 +46,7 @@
     </header>
     <!-- main -->
     <main>
+    Le pourcentage de criminalité est de <?= $crimePourcentage; ?> %
         <?php require_once($template); ?>
     </main>
     <!-- footer -->
@@ -61,5 +59,7 @@
     <script src=""> </script>
     <!-- footer script -->
     <script src=""> </script>
+    <!-- DOM : list des noms possible pour barre de recherche 
+    <script src="Assets\Scripts\search.js"> </script>-->
 </body>
 </html>

@@ -1,4 +1,6 @@
-<img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo" class="logoImg">
+<a href="/index">
+    <img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo" class="logoImg">
+</a>
 <nav>
     <!-- si $_SESSION est connecté alors afficher-->
     <?php if (isset($_SESSION['user'])) : ?>

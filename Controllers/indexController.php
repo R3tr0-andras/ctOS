@@ -1,6 +1,7 @@
 <?php
 
 require_once("Models\userModel.php");
+require_once("Models\dangerousnessModel.php");
 
 $uri = $_SERVER["REQUEST_URI"];
 

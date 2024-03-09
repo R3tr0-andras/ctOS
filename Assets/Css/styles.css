@@ -3,6 +3,22 @@ body {
     padding: 0%;
 }
 
+/* Partie header de la page home */
+
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+header .logoImg {
+    width: 200px;
+    height: 45px;
+}
+
 /* Partie Main de la page home */
 
 .main-home-diplay {
@@ -41,10 +57,13 @@ footer {
     margin-top: 2%;
     height: 100px;
     display: flex;
-    background-color: black;
     text-align: center;
     align-items: center;
     justify-content: center;
+    /* positionner toujours en bas de page */
+    position: absolute; 
+    bottom: 0; left: 0; right: 0
+    
 }
 
 .copyright {

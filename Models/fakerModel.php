@@ -9,16 +9,21 @@ But : creer des éléments dans la table user
 */
 
 global $fakeUserIds;
+global $directory;
 
 function CreateFaker($pdo)
 {
+    $directory = "Assets/Pictures/fakerProfile";
+
     $faker = Faker\Factory::create();
 
     try {
-        $query = "INSERT INTO user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userIsFaker ) 
-            VALUES (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userIsFaker )";
+        $query = "INSERT INTO user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userProfileImage, userJobs, userIncome, userIsFaker ) 
+            VALUES (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userProfileImage, :userJobs, :userIncome, :userIsFaker )";
 
         $createFaker = $pdo->prepare($query);
+
+        $randomImage = chooseRandomImage($directory);
 
         $genre = GenderGenerate();
         $ethnic = getRandomEthnicity();
@@ -35,6 +40,7 @@ function CreateFaker($pdo)
             'userBirthDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
             'userPhoneNumber' => $phoneNumber,
             'userEthnic' => $ethnic,
+            'userProfileImage' => $randomImage,
             'userJobs' => $infosEmploi['emploi'],
             'userIncome' => $infosEmploi['moyenne_salaire'],
             'userRole' => 'user',
@@ -69,16 +75,8 @@ function GenderGenerate()
 /* Obtenir une éthnie depuis une liste en json */
 function getRandomEthnicity()
 {
-    // Chemin vers le fichier JSON contenant les ethnies
-    $cheminFichier = '../Assets/json/ethnicity.json';
-
-    // Vérifier si le fichier existe
-    if (!file_exists($cheminFichier)) {
-        return null; // ou une valeur par défaut, selon vos besoins
-    }
-
     // Lire le contenu du fichier JSON
-    $contenuFichier = file_get_contents($cheminFichier);
+    $contenuFichier = file_get_contents('Assets/json/ethnicity.json');
 
     // Vérifier si la lecture du fichier s'est bien passée
     if ($contenuFichier === false) {
@@ -169,6 +167,33 @@ function generateRandomPhoneNumber()
     return $phoneNumber;
 }
 
+/* choisir une image de profil aux fakers de manière random */
+function chooseRandomImage($directory) {
+    $count = 0;
+    
+    // Scanner le dossier
+    $files = scandir($directory);
+    
+    // Filtrer les fichiers images et compter leur nombre
+    foreach ($files as $file) {
+        // Vérifier si c'est un fichier image
+        if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $file)) {
+            $count++;
+            $images[] = $file; // Stocker le nom du fichier dans un tableau
+        }
+    }
+    
+    // Vérifier si des images ont été trouvées
+    if ($count == 0) {
+        return "Aucune image trouvée dans le dossier.";
+    }
+    
+    // Choisir aléatoirement un fichier image
+    $randomImage = $images[array_rand($images)];
+    
+    return $randomImage;
+}
+
 /* 
 Lib de fonction pour génération de casier criminel pour faker 
 ------------------------------------------------------------
@@ -239,9 +264,7 @@ Lib de fonction pour génération chose récente
 
 function CreateRecentThing($pdo, $userId)
 {
-
     $faker = Faker\Factory::Create();
-    var_dump($userId);
 
     try {
         $query = "insert into recent(userId, recentDate, recentContent) 
@@ -249,12 +272,12 @@ function CreateRecentThing($pdo, $userId)
 
         $createFaker = $pdo->prepare($query);
 
-        $recent = GetRecent();
+        $recentContent = GetRecent();
 
         $createFaker->execute([
             'userId' => $userId,
             'recentDate' => $faker->dateTime()->format('Y-m-d H:i:s'),
-            'recentContent' => $recent
+            'recentContent' => $recentContent
 
         ]);
     } catch (PDOException $e) {
@@ -290,3 +313,5 @@ function GetRecent()
     // Retourner la valeur de la clé "thing"
     return $recent['thing'];
 }
+
+/*  */

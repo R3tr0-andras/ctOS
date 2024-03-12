@@ -104,6 +104,10 @@
             <small><?= $messageErreur["Tel"] ?></small>
         <?php endif ?>
     </div>
+    <div class="">
+        <label for="imageProfil" class="">Profile Picture</label>
+        <input type="file" id="imageProfil" name="imageProfil">
+    </div>
     <!-- Bouton d'envoi du formulaire-->
     <div>
         <button name="btnEnvoi">Submit</button>

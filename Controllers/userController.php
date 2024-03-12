@@ -35,7 +35,7 @@ elseif ($uri == "/register") {
 
 elseif ($uri === "/login") {
     if (isset($_POST['btnEnvoi'])) {
-        if (connexionUser($pdo)) {
+        if (connexionUser($pdo) && uploadImage()) {
             $title = "Home page";
             $template = "Views\home.php";
             require_once("Views\base.php");

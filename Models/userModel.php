@@ -5,7 +5,6 @@ Fonction de sélection des ustilisateurs
 ---------------------------------------
 But : récupérer toutes les infos de la table user
 */
-
 function SelectAllUsers($pdo)
 {
 
@@ -24,8 +23,10 @@ But : creer des éléments dans la table user
 function CreateUser($pdo)
 {
     try {
-        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userIsFaker ) 
-        values (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userIsFaker)";
+        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userProfileImage, userIsFaker ) 
+        values (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userProfileImage, :userIsFaker)";
+        
+        $img = uploadImage();
 
         $createUser = $pdo->prepare($query);
 
@@ -41,6 +42,7 @@ function CreateUser($pdo)
             'userEthnic' => $_POST['Ethnie'],
             'userJobs' => $_POST['Job'],
             'userIncome' => $_POST['Income'],
+            'userProfileImage' => $img,
             'userRole' => 'user',
             'userIsFaker' => '0'
         ]);
@@ -49,7 +51,6 @@ function CreateUser($pdo)
         die($message);
     }
 }
-
 
 /* 
 Fonction de connexion des ustilisateurs 
@@ -80,14 +81,11 @@ function connexionUser($pdo)
     }
 }
 
-
-
 //Modifier un utilisateur
 function modifyUser($pdo, $userId)
 {
 
 }
-
 
 /* 
 Fonction de supression des ustilisateurs 
@@ -120,5 +118,32 @@ function deleteUser($pdo, $userId)
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+/* 
+Fonction de traitement d'image de profil 
+---------------------------------------
+But : suprimer toutes les infos de la table user
+*/
+function uploadImage() {
+    $targetDirectory = "../Assets/Pictures/userProfile/"; // Chemin de stockage des images
+    
+    // Vérifier si un fichier a été téléchargé
+    if (!empty($_FILES["imageProfil"]["name"])) {
+        $originalFileName = $_FILES["imageProfil"]["name"];
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+        $newFileName = $_SESSION['user']->userId . '.' . $extension; // Renommer le fichier avec l'identifiant de l'utilisateur
+        
+        $targetFile = $targetDirectory . $newFileName;
+
+        // Déplacer le fichier téléchargé vers le dossier spécifié
+        if (move_uploaded_file($_FILES["imageProfil"]["tmp_name"], $targetFile)) {
+            return $newFileName; // Retourner le nom du fichier
+        } else {
+            return false; // Retourner false en cas d'erreur
+        }
+    } else {
+        return false; // Retourner false si aucun fichier n'a été téléchargé
     }
 }

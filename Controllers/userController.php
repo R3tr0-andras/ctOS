@@ -35,7 +35,7 @@ elseif ($uri == "/register") {
 
 elseif ($uri === "/login") {
     if (isset($_POST['btnEnvoi'])) {
-        if (connexionUser($pdo) && uploadImage()) {
+        if (connexionUser($pdo)) {
             $title = "Home page";
             $template = "Views\home.php";
             require_once("Views\base.php");
@@ -55,8 +55,8 @@ elseif ($uri === "/login") {
 } 
 
 elseif ($uri == "/logout") {
-
     session_destroy();
+    header("Location: /");
     //var_dump($_SESSION);
     $title = "Home page";
     $template = "Views\home.php";

@@ -19,3 +19,18 @@ function searching($pdo, $searchTerm) {
     // Retournez les résultats de la recherche
     return $results;
 }
+
+function selectUser($pdo) {
+    try {
+        $query = "select * from user where JOIN user ON item.userId = user.userId  where itemId = :itemId ";
+        $selectitem = $pdo->prepare($query);
+        $selectitem->execute([
+            'userId' => $_GET["itemId"]
+        ]);
+        $userProfile = $selectitem->fetch();
+        return $userProfile;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}

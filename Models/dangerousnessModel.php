@@ -45,16 +45,16 @@ function calculateCrimePercentage($pdo)
 
         // Poids attribués à chaque niveau de dangerosité
         $weights = array(
-            'Low' => 0.50,
+            'Low' => 0.20,
             'Medium' => 0.30,
-            'Severe' => 0.20
+            'Severe' => 0.50
         );
 
         // Calculer le pourcentage global en tenant compte des poids
         $overallPercentage = 0;
         foreach ($countPerDangerousness as $dangerousness => $count) {
             $percentage = ($count / $totalInfractions) * 100;
-            $overallPercentage += $percentage * $weights[$dangerousness];
+            $overallPercentage += $percentage;
         }
 
         // Retourner le pourcentage global

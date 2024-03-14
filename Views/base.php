@@ -7,6 +7,7 @@
         $couleurBackground = "#000000";
         $crimePourcentage = 0;
     }
+    
 ?>
 
 <!DOCTYPE html>

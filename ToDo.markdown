@@ -1,18 +1,12 @@
 # Bug
 - La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
     update : je pense plutot m'imoler par le feu ^-^
-- Le profil ne s'affiche pas
-- La barre de recherche ne s'affiche pas
-- Le footer est en bas mais légérement en haut
 
 # To do
 - Le coté visuel est pas dutout fini
 - affichage des infos 
 - Intégrer chartLib au projet
 - Mettre en responsiv
-- mettre en place la couleur par rapport à la dangerosié
-- les images de profil
-
 
 # Bonus
 - Intégrer un générateur de carte bancaire
@@ -28,3 +22,14 @@
 - la function CreateRecentThing renvoie array
 - la function getRandomEthnicity renvoie null
 - Le footer qui ne se met pas au fond
+- La barre de recherche ne s'affiche pas
+- Le profil ne s'affiche pas
+- Le footer est en bas mais légérement en haut
+- Barre de scrol horizontale :/
+- Après avoir Logout la couleur restait
+
+# Element intégré
+- Header
+- Footer
+- les images de profil qui diffèrent entre utilisateurs
+- la couleur par rapport à la dangerosié

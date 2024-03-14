@@ -4,13 +4,14 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 /* Partie header de la page home */
 
 header {
     height: 80px;
-    width: 100%;
+    /*width: 100%;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,9 +70,8 @@ footer {
     justify-content: center;
     /* positionner toujours en bas de page */
     padding: 10px;
-    position: fixed;
     bottom: 0;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .copyright {
@@ -80,3 +80,18 @@ footer {
     font-size: 1.2em;
     /* Adjust the size as needed */
 }
+
+/* Scroll bar */
+body::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: black; /* color of the tracking area */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: white; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    /*border: 3px solid orange;*/ /* creates padding around scroll thumb */
+  }

@@ -5,7 +5,7 @@ function getInfractions($pdo)
 {
     try {
         // Récupérer l'ID de l'utilisateur à partir de la session
-        $userId = $_SESSION["user"]->userId;
+        $userId = $_GET["userId"];
 
         // Préparer la requête SQL pour récupérer uniquement la colonne recordDangerousness de l'utilisateur
         $query = "SELECT recordDangerousness FROM criminal_record WHERE userId = :userId";

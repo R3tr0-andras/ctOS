@@ -14,21 +14,63 @@ function searching($pdo, $searchTerm) {
     echo "Requête SQL exécutée : " . $stmt->queryString . "<br>";
 
     // Récupérez les résultats de la recherche
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetchAll();
 
     // Retournez les résultats de la recherche
     return $results;
 }
 
-function selectUser($pdo) {
+function GetTableUser($pdo) {
     try {
-        $query = "select * from user where JOIN user ON item.userId = user.userId  where itemId = :itemId ";
-        $selectitem = $pdo->prepare($query);
-        $selectitem->execute([
-            'userId' => $_GET["itemId"]
+        $query = "select * from user where userId = :userId ";
+
+        $selectUserToTracking = $pdo->prepare($query);
+
+        $selectUserToTracking->execute([
+            'userId' => $_GET["userId"] // récupération du paramètre
         ]);
-        $userProfile = $selectitem->fetch();
-        return $userProfile;
+
+        $userProfileToTracking = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+
+        return $userProfileToTracking;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}
+
+function GetTableCriminalRecordUser($pdo) {
+    try {
+        $query = "select * from criminal_record where userId = :userId ";
+
+        $selectUserToTracking = $pdo->prepare($query);
+
+        $selectUserToTracking->execute([
+            'userId' => $_GET["userId"] // récupération du paramètre
+        ]);
+
+        $userCriminalRecord = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+
+        return $userCriminalRecord;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}
+
+function GetTableRecent($pdo) {
+    try {
+        $query = "select * from recent where userId = :userId ";
+
+        $selectUserToTracking = $pdo->prepare($query);
+
+        $selectUserToTracking->execute([
+            'userId' => $_GET["userId"] // récupération du paramètre
+        ]);
+
+        $userRecentThing = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+
+        return $userRecentThing;
     } catch (PDOException $e) {
         $message = $e->getmessage();
         die($message);

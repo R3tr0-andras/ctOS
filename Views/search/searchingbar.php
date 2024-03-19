@@ -3,11 +3,16 @@
     #searchForm {
         display: flex;
         flex-direction: row;
-        align-items: center; /* Centrer verticalement */
-        justify-content: center; /* Centrer horizontalement */
-        width: 85%; /* Set width to 85% of the container */
-        margin: 0 auto; /* Centrer le formulaire horizontalement */
-        margin-bottom: 20px; /* Ajouter un espace en bas du formulaire */
+        align-items: center;
+        /* Centrer verticalement */
+        justify-content: center;
+        /* Centrer horizontalement */
+        width: 85%;
+        /* Set width to 85% of the container */
+        margin: 0 auto;
+        /* Centrer le formulaire horizontalement */
+        margin-bottom: 20px;
+        /* Ajouter un espace en bas du formulaire */
     }
 
     input[type="text"] {
@@ -22,17 +27,20 @@
         padding: 8px 12px;
         border: none;
         border-radius: 5px;
-        background-color: #007bff; /* Change color as needed */
+        background-color: #007bff;
+        /* Change color as needed */
         color: white;
         cursor: pointer;
     }
 
     button[name="searchBTN"]:hover {
-        background-color: #0056b3; /* Change color as needed */
+        background-color: #0056b3;
+        /* Change color as needed */
     }
 
     .user-card {
-        width: 60%; /* Définir la largeur des cartes à 60% */
+        width: 60%;
+        /* Définir la largeur des cartes à 60% */
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
@@ -76,18 +84,21 @@
         <div class="container">
             <?php if (!empty($results)) : ?>
                 <div class="row">
+                    <?php var_dump($results) ?>
                     <?php foreach ($results as $result) : ?>
                         <div class="col-md-4">
-                            <a href="voiruser?userId=<?= $result->userId ?>" class="user-card-link">
-                                <div class="user-card">
-                                    <img src="<?= $result['userProfileImage']; ?>" alt="User Image" class="user-image">
-                                    <div class="user-info">
-                                        <h5>User ID: <?= $result['userId']; ?></h5>
-                                        <p>Name: <?= $result['userName']; ?></p>
-                                        <p>First Name: <?= $result['userFirstName']; ?></p>
-                                    </div>
+                            <div class="user-card">
+                                <a href="trackingUser?userId=<?= $result->userId ?>">
+                                    <img src="<?= $result->userProfileImage; ?>" alt="User Image" class="user-image">
+                                </a>
+                                <div class="user-info">
+                                    <h5>
+                                        <a href="trackingUser?userId=<?= $result->userId ?>">User ID: <?= $result->userId; ?></a>
+                                    </h5>
+                                    <p>Name: <?= $result->userName; ?></p>
+                                    <p>First Name: <?= $result->userFirstName; ?></p>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>

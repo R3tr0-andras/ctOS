@@ -2,6 +2,7 @@
 
 // Inclure le modèle utilisateur
 require_once "Models\searchModel.php";
+require_once("Models\dangerousnessModel.php");
 
 // Récupérer l'URI de la requête
 $uri = $_SERVER['REQUEST_URI'];
@@ -24,8 +25,31 @@ if ($uri === '/searching') {
         $template = "Views\search\searchingbar.php";
         require_once("Views\base.php");
     }
-}  elseif (isset($_GET["userId"]) && $uri === "/voiruser?userId=" . $_GET["userId"]) {
+} elseif (isset($_GET["userId"]) && $uri === "/trackingUser?userId=" . $_GET["userId"]) {
     //recherche des données de l'utilisateur concernée
-    $userSearched = selectUser($pdo);
-    
+    $userSearched = GetTableUser($pdo);
+
+    $title = "Tracking";
+    $template = "Views/search/trackingUser.php";
+    require_once("Views\base.php");
+} elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["userId"]) {
+    // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
+    $userSearched = GetTableUser($pdo);
+    $criminalRecordUser = GetTableCriminalRecordUser($pdo);
+    $userRecentThing = GetTableRecent($pdo);
+
+    // Gestion des couleurs
+    $imageBackground = '';
+    if (isset($_SESSION['user'])) {
+        $couleurBackground = getColorFromPercentage($pdo);
+        $crimePourcentage = calculateCrimePercentage($pdo);
+    } else {
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+    }
+
+    // Gestion des routes
+    $title = "Live Tracking";
+    $template = "Views\search\lifeTracking.php";
+    require_once("Views\base.php");
 }

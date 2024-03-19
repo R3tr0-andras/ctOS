@@ -1,15 +1,7 @@
 <?php
-    $imageBackground = '';
-    if (isset($_SESSION['user'])) {
-        $couleurBackground = getColorFromPercentage($pdo);
-        $crimePourcentage = calculateCrimePercentage($pdo);
-    } else {
-        $couleurBackground = "#000000";
-        $crimePourcentage = 0;
-    }
-    
+    $couleurBackground = "#000000" || getColorFromPercentage($pdo);
+    $crimePourcentage = 0 || calculateCrimePercentage($pdo);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +19,8 @@
             background-color: <?= $couleurBackground; ?>;
         }
 
-        body {
-            background-image: <?= $imageBackground; ?>;
+        body::-webkit-scrollbar-track {
+            background: <?= $couleurBackground; ?>;
         }
 
         footer {
@@ -37,7 +29,7 @@
     </style>
 
     <!-- Titre et icon-->
-    <link rel="icon" href="../Assets/Pictures/Blume_black.png" type="icon">
+    <link rel="icon" href="Assets/Pictures/Blume_black.png" type="icon">
     <title><?= $title ?></title>
 </head>
 <body>
@@ -47,7 +39,7 @@
     </header>
     <!-- main -->
     <main>
-    Le pourcentage de criminalité est de <?= $crimePourcentage; ?> %
+        Le pourcentage de criminalité est de <?= $crimePourcentage; ?> %
         <?php require_once($template); ?>
     </main>
     <!-- footer -->

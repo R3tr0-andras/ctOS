@@ -1,6 +1,5 @@
 # Bug
-- La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
-    update : je pense plutot m'imoler par le feu ^-^
+
 
 # To do
 - Le coté visuel est pas dutout fini
@@ -27,6 +26,9 @@
 - Le footer est en bas mais légérement en haut
 - Barre de scrol horizontale :/
 - Après avoir Logout la couleur restait
+- La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
+    update : je pense plutot m'imoler par le feu ^-^ (merci madame baudson)
+- Le changement de page après tracking
 
 # Element intégré
 - Header

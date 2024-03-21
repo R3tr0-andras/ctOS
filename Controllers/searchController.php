@@ -7,8 +7,14 @@ require_once("Models\dangerousnessModel.php");
 // Récupérer l'URI de la requête
 $uri = $_SERVER['REQUEST_URI'];
 
+// Couleur des fonds
+global $couleurBackground;
+global $crimePourcentage;
+
 // Gestion des routes
 if ($uri === '/searching') {
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
     // Vérification si la requête est une requête AJAX
     if (isset($_POST['searchBTN'])) {
         var_dump($_POST['searchText']);
@@ -26,6 +32,16 @@ if ($uri === '/searching') {
         require_once("Views\base.php");
     }
 } elseif (isset($_GET["userId"]) && $uri === "/trackingUser?userId=" . $_GET["userId"]) {
+    // Gestion des couleurs
+    $imageBackground = '';
+    if (isset($_SESSION['user'])) {
+        $couleurBackground = getColorFromPercentage($pdo);
+        $crimePourcentage = calculateCrimePercentage($pdo);
+    } else {
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+    }
+
     //recherche des données de l'utilisateur concernée
     $userSearched = GetTableUser($pdo);
 
@@ -35,7 +51,7 @@ if ($uri === '/searching') {
 } elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
-    $criminalRecordUser = GetTableCriminalRecordUser($pdo);
+    $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
     $userRecentThing = GetTableRecent($pdo);
 
     // Gestion des couleurs

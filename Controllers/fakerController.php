@@ -22,11 +22,18 @@ if ($uri === '/fakerCreator') {
 
         }
     }
+    // Couleur
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
 
     $title = $creationSuccess ? "Creating Complete" : "Creating";
     $template = $creationSuccess ? "Views/faker/view.php" : "Views/faker/creator.php";
     require_once("Views\base.php");
 } else if ($uri === '/fakerView') {
+    // Couleur
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
+    
     $title = "Creating Complete";
     $template = "Views/faker/view.php";
     require_once("Views\base.php");

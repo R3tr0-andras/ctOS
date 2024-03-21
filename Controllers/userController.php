@@ -8,7 +8,10 @@ $uri = $_SERVER['REQUEST_URI'];
 
 // Gestion des routes
 if ($uri === '/profil') {
-
+    // Couleur
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
+    
     $title = "Online profile";
     $template = "Views\Users\profile.php";
     require_once("Views\base.php");
@@ -27,6 +30,10 @@ elseif ($uri == "/register") {
             require_once("Views\base.php");
         }
     } else {
+        // Couleur
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+
         $title = "Register";
         $template = "Views\Users\inscription.php";
         require_once("Views\base.php");
@@ -47,10 +54,14 @@ elseif ($uri === "/login") {
             require_once("Views\base.php");
         }
     } else {
-        
+        // Couleur
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+
         $title = "Log In";
         $template = "Views\Users\connexion.php";
         require_once("Views\base.php");
+        
     }
 } 
 

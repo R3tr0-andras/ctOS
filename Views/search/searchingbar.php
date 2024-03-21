@@ -70,12 +70,11 @@
     }
 </style>
 <section>
-    <!-- Barre de recherche -->
-    <h2>Barre de recherche</h2>
+    <img src="Assets\Pictures\ctos_2_0_search.png" alt="">
     <div>
         <form id="searchForm" method="POST">
             <input type="text" name="searchText" placeholder="searching a name" value="">
-            <button name="searchBTN">E</button>
+            <button name="searchBTN">Search</button>
         </form>
     </div>
     <div>

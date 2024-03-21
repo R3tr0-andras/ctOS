@@ -107,7 +107,7 @@
     <!-- User profile image (round) -->
     <div>
         <?php 
-            if (isset($_SESSION['user']) && $_SESSION['user']->userIsFaker == 1) {
+            if (isset($_SESSION['user']) && $userSearched->userIsFaker == 1) {
                 $profileImage = "../Assets/Pictures/fakerProfile/" . $userSearched->userProfileImage;
             } else {
                 $profileImage = "../Assets/pictures/userProfile/" . $userSearched->userProfileImage;

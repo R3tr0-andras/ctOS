@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    background-image: url(/Assets/Pictures/profileBackground.jpg);
+    /* background-image: url(/Assets/Pictures/profileBackground.jpg); */
 }
 
 /* Partie header de la page home */

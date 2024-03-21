@@ -1,9 +1,6 @@
-<?php
-    $couleurBackground = "#000000" || getColorFromPercentage($pdo);
-    $crimePourcentage = 0 || calculateCrimePercentage($pdo);
-?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- meta -->
     <meta charset="UTF-8">
@@ -13,7 +10,6 @@
     <link rel="stylesheet" href="../Assets/Css/fonts.css">
     <link rel="stylesheet" href="../Assets/Css/flex.css">
     <link rel="stylesheet" href="../Assets/Css/keyframes.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         header {
             background-color: <?= $couleurBackground; ?>;
@@ -32,6 +28,7 @@
     <link rel="icon" href="Assets/Pictures/Blume_black.png" type="icon">
     <title><?= $title ?></title>
 </head>
+
 <body>
     <!-- header -->
     <header>
@@ -55,4 +52,5 @@
     <!-- DOM : list des noms possible pour barre de recherche 
     <script src="Assets\Scripts\search.js"> </script>-->
 </body>
+
 </html>

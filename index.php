@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 require_once("Data/dataBaseConnection.php");
 require_once("Controllers/indexController.php");

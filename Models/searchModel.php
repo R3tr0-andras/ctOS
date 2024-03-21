@@ -49,7 +49,7 @@ function GetTableCriminalRecordUser($pdo) {
             'userId' => $_GET["userId"] // récupération du paramètre
         ]);
 
-        $userCriminalRecord = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+        $userCriminalRecord = $selectUserToTracking->fetchAll(); // récupération d'un enregistrement
 
         return $userCriminalRecord;
     } catch (PDOException $e) {

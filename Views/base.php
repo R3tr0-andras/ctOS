@@ -36,7 +36,6 @@
     </header>
     <!-- main -->
     <main>
-        Le pourcentage de criminalité est de <?= $crimePourcentage; ?> %
         <?php require_once($template); ?>
     </main>
     <!-- footer -->

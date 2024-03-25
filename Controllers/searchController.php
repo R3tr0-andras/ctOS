@@ -32,15 +32,8 @@ if ($uri === '/searching') {
         require_once("Views\base.php");
     }
 } elseif (isset($_GET["userId"]) && $uri === "/trackingUser?userId=" . $_GET["userId"]) {
-    // Gestion des couleurs
-    $imageBackground = '';
-    if (isset($_SESSION['user'])) {
-        $couleurBackground = getColorFromPercentage($pdo);
-        $crimePourcentage = calculateCrimePercentage($pdo);
-    } else {
-        $couleurBackground = "#000000";
-        $crimePourcentage = 0;
-    }
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
 
     //recherche des données de l'utilisateur concernée
     $userSearched = GetTableUser($pdo);

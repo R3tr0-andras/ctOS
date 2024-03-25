@@ -39,11 +39,13 @@
         <?php require_once($template); ?>
     </main>
     <!-- footer -->
+    <!--
     <div class="footer-clean">
         <footer>
-            <?php require_once("Views\Components/footer.php"); ?>
+            <?php //require_once("Views\Components/footer.php"); ?>
         </footer>
     </div>
+    -->
     <!-- menu script -->
     <script src=""> </script>
     <!-- footer script -->

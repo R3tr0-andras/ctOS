@@ -1,53 +1,51 @@
 <style>
-    /* Style for the search form */
+    /* barre de recherche */
+
     #searchForm {
         display: flex;
         flex-direction: row;
         align-items: center;
-        /* Centrer verticalement */
         justify-content: center;
-        /* Centrer horizontalement */
         width: 85%;
-        /* Set width to 85% of the container */
         margin: 0 auto;
-        /* Centrer le formulaire horizontalement */
         margin-bottom: 20px;
-        /* Ajouter un espace en bas du formulaire */
     }
 
     input[type="text"] {
         flex: 1;
         padding: 8px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
+        border-radius: 25px;
+        border: 1px solid white;
         margin-right: 5px;
+        background-color: transparent;
     }
 
     button[name="searchBTN"] {
         padding: 8px 12px;
         border: none;
         border-radius: 5px;
-        background-color: #007bff;
-        /* Change color as needed */
+        background-color: #24C1F3;
         color: white;
         cursor: pointer;
     }
 
     button[name="searchBTN"]:hover {
-        background-color: #0056b3;
-        /* Change color as needed */
+        background-color: #55EC77;
     }
 
+    /* résultat de recherche */
+
     .user-card {
-        width: 60%;
-        /* Définir la largeur des cartes à 60% */
+        width: 500px;
+        margin: auto;
+        display: flex;
+        align-items: center;
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
-        margin: 10px;
+        margin: 10px auto;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         background-color: #fff;
-        display: flex;
     }
 
     .user-image {
@@ -66,43 +64,78 @@
     }
 
     .user-info p {
-        margin-bottom: 5px;
+        margin: 0;
+    }
+
+    .user-info p span {
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .title {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .results-container {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    /* image au dessus de la barre de recherche */
+
+    .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .image-container img {
+        display: inline-block;
     }
 </style>
 <section>
-    <img src="Assets\Pictures\ctos_2_0_search.png" alt="">
+    <div class="image-container">
+        <img src="Assets\Pictures\ctos_2_0_search.png" alt="">
+    </div>
     <div>
         <form id="searchForm" method="POST">
-            <input type="text" name="searchText" placeholder="searching a name" value="">
+            <input type="text" name="searchText" placeholder="searching a name" value="" class="searchBar">
             <button name="searchBTN">Search</button>
         </form>
     </div>
-    <div>
-        <!-- Résultats de la recherche -->
-        <h2>Résultats de la recherche :</h2>
+    <div class="results-container">
         <div class="container">
             <?php if (!empty($results)) : ?>
-                <div class="row">
-                    <?php var_dump($results) ?>
+                <!-- Résultats de la recherche -->
+                <h2 class="title">Résultats de la recherche :</h2>
+                <div>
                     <?php foreach ($results as $result) : ?>
-                        <div class="col-md-4">
+                        <div>
                             <div class="user-card">
+                                <?php
+                                    if ($result->userIsFaker == 1) {
+                                        $profileImage = "../Assets/Pictures/fakerProfile/" . $result->userProfileImage;
+                                    } else {
+                                        $profileImage = "../Assets/pictures/userProfile/" . $result->userProfileImage;
+                                    }
+                                ?>
                                 <a href="trackingUser?userId=<?= $result->userId ?>">
-                                    <img src="<?= $result->userProfileImage; ?>" alt="User Image" class="user-image">
+                                    <img src="<?= $profileImage; ?>" alt="Image de l'utilisateur" class="user-image">
                                 </a>
                                 <div class="user-info">
                                     <h5>
-                                        <a href="trackingUser?userId=<?= $result->userId ?>">User ID: <?= $result->userId; ?></a>
+                                        <a href="trackingUser?userId=<?= $result->userId ?>">ID Utilisateur: <?= $result->userId; ?></a>
                                     </h5>
-                                    <p>Name: <?= $result->userName; ?></p>
-                                    <p>First Name: <?= $result->userFirstName; ?></p>
+                                    <p><span>Nom:</span> <?= $result->userName; ?></p>
+                                    <p><span>Prénom:</span> <?= $result->userFirstName; ?></p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
-            <?php else : ?>
-                <p>Aucun résultat trouvé.</p>
             <?php endif; ?>
         </div>
     </div>

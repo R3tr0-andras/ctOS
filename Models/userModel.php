@@ -82,9 +82,49 @@ function connexionUser($pdo)
 }
 
 //Modifier un utilisateur
-function modifyUser($pdo, $userId)
+function UpdateUser($pdo, $userId, $img)
 {
+    try {
+        $query = "UPDATE user SET 
+                    userName = :userName,
+                    userFirstName = :userFirstName,
+                    userPseudo = :userPseudo,
+                    userPassword = :userPassword,
+                    userEmail = :userEmail,
+                    userRole = :userRole,
+                    userGenre = :userGenre,
+                    userBirthDate = :userBirthDate,
+                    userPhoneNumber = :userPhoneNumber,
+                    userEthnic = :userEthnic,
+                    userJobs = :userJobs,
+                    userIncome = :userIncome,
+                    userProfileImage = :userProfileImage
+                WHERE userId = :userId";
 
+        // You need to handle image upload separately if you want to update profile image.
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'userName' => $_POST['Nom'],
+            'userFirstName' => $_POST['Prenom'],
+            'userPseudo' => $_POST['Pseudo'],
+            'userPassword' => $_POST['Password'],
+            'userEmail' => $_POST['Mail'],
+            'userRole' => 'user',
+            'userGenre' => $_POST['Genre'],
+            'userBirthDate' => $_POST['Date'],
+            'userPhoneNumber' => $_POST['Tel'],
+            'userEthnic' => $_POST['Ethnie'],
+            'userJobs' => $_POST['Job'],
+            'userIncome' => $_POST['Income'],
+            'userProfileImage' => $img, // You need to handle image upload here.
+            'userId' => $userId
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
 }
 
 /* 

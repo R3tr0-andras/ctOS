@@ -1,6 +1,7 @@
 <?php
 
 // Inclure le modèle utilisateur
+require_once "Models\userModel.php";
 require_once "Models\searchModel.php";
 require_once("Models\dangerousnessModel.php");
 
@@ -56,9 +57,40 @@ if ($uri === '/searching') {
         $couleurBackground = "#000000";
         $crimePourcentage = 0;
     }
-
     // Gestion des routes
     $title = "Live Tracking";
     $template = "Views\search\lifeTracking.php";
+    require_once("Views\base.php");
+} elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
+    // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
+    $userSearched = GetTableUser($pdo);
+    $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
+    $userRecentThing = GetTableRecent($pdo);
+
+    // Gestion des couleurs
+    $imageBackground = '';
+    if (isset($_SESSION['user'])) {
+        $couleurBackground = getColorFromPercentage($pdo);
+        $crimePourcentage = calculateCrimePercentage($pdo);
+    } else {
+        $couleurBackground = "#000000";
+        $crimePourcentage = 0;
+    }
+
+    if (isset($_POST['modifyBTN'])) {
+        if (UpdateUser($pdo, $userId, $img)) {
+            
+            
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        }else {
+            
+        }
+    }
+
+    // Gestion des routes
+    $title = "Modification";
+    $template = "Views\Users\modifyProfil.php";
     require_once("Views\base.php");
 }

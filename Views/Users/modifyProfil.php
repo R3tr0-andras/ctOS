@@ -9,16 +9,16 @@
     <input type="text" id="Pseudo" name="Pseudo" value="<?= htmlspecialchars($userSearched->userPseudo) ?>" required><br>
 
     <label for="Password">Mot de passe</label>
-    <input type="password" id="Password" name="Password" required><br>
+    <input type="text" id="Password" name="Password" value="<?= htmlspecialchars($userSearched->userPassword) ?>"<br>
 
     <label for="Mail">Email</label>
     <input type="email" id="Mail" name="Mail" value="<?= htmlspecialchars($userSearched->userEmail) ?>" required><br>
 
     <label for="Genre">Genre</label>
     <select id="Genre" name="Genre" required>
-        <option value="Male" <?= ($userSearched->userGenre === "Male") ? "selected" : "" ?>>Homme</option>
-        <option value="Female" <?= ($userSearched->userGenre === "Female") ? "selected" : "" ?>>Femme</option>
-        <option value="Other" <?= ($userSearched->userGenre === "Other") ? "selected" : "" ?>>Autre</option>
+        <option value="Male" <?= ($userSearched->userGenre === "M") ? "selected" : "" ?>>Homme</option>
+        <option value="Female" <?= ($userSearched->userGenre === "F") ? "selected" : "" ?>>Femme</option>
+        <option value="Other" <?= ($userSearched->userGenre === "O") ? "selected" : "" ?>>Autre</option>
     </select><br>
 
     <label for="Date">Date de naissance</label>
@@ -39,5 +39,5 @@
     <label for="ProfileImage">Image de profil</label>
     <input type="file" id="ProfileImage" name="ProfileImage" accept="image/*"><br>
 
-    <button type="submit">Modifier le profil</button>
+    <button name="modifyBTN">Modifier le profil</button>
 </form>

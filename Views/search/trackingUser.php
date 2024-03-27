@@ -116,3 +116,4 @@
         <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profileImg">
     </div>
 </section>
+<button><a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a></button>

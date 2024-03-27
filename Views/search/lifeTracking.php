@@ -135,3 +135,7 @@
         </div>
     </div>
 </section>
+
+<section>
+    <p><?=$userRecentThing->recentContent; ?></p>
+</section>

@@ -68,7 +68,7 @@ function GetTableRecent($pdo) {
             'userId' => $_GET["userId"] // récupération du paramètre
         ]);
 
-        $userRecentThing = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+        $userRecentThing = $selectUserToTracking->fetchAll(); // récupération d'un enregistrement
 
         return $userRecentThing;
     } catch (PDOException $e) {

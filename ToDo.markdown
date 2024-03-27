@@ -1,6 +1,5 @@
 # Bug
 
-
 # To do
 - Le coté visuel est pas dutout fini
 - affichage des infos 

@@ -2,6 +2,8 @@
 
 // Inclure le modèle utilisateur
 require_once "Models\userModel.php";
+require_once "Models\searchModel.php";
+require_once("Models\dangerousnessModel.php");
 
 // Récupérer l'URI de la requête
 $uri = $_SERVER['REQUEST_URI'];
@@ -77,7 +79,7 @@ if ($uri === '/profil') {
     $title = "Home page";
     $template = "Views\home.php";
     require_once("Views\base.php");
-}
+} 
 //elseif ($uri == "/modify") {
 //  
 //} 

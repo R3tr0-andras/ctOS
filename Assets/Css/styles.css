@@ -132,7 +132,7 @@ input[type="date"],
 input[type="number"],
 input[type="tel"],
 select {
-    width: calc(100% - 20px); /* Pour compenser le padding */
+    width: 100%; /* Pour compenser le padding */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid white;
@@ -159,7 +159,7 @@ select::placeholder {
     margin-top: 2px;
     padding: 10px;
     color: #fff;
-    border: 1px solid #007bff;
+    border: 1px solid #24C1F3;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -167,7 +167,7 @@ select::placeholder {
 }
 
 .buttonForm:hover {
-    background-color: #007bff;
+    background-color: #24C1F3;
     font-weight: bold;
 }
 

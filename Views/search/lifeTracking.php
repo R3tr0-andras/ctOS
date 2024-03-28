@@ -2,13 +2,13 @@
     section {
         display: flex;
         align-items: center;
-        /* Centrage vertical */
+ 
         justify-content: center;
-        /* Centrage horizontal */
+     
         height: 100%;
-        /* Pleine hauteur */
+       
         padding: 20px;
-        /* Marge intérieure */
+       
     }
 
     .container {

@@ -99,5 +99,5 @@
     <div>
         <button class="buttonForm" name="btnEnvoi">Submit</button>
     </div>
-    <p class="lienVersConnexion">Déjà un compte ?<a href="/login">Connexion</a></p>
+    <p class="lienVersConnexion">Déjà un compte ? <a href="/login"> Connection</a></p>
 </form>

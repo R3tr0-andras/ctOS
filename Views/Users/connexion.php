@@ -16,7 +16,7 @@
             </div>
             <button class="buttonForm" name="btnEnvoi">Envoi</button>
 
-            <p class="lienVersConnexion">Pas encore <a href="/register">inscrit</a> ?</p>
+            <p class="lienVersConnexion">Pas encore <a href="/register">Inscrit</a> ?</p>
         </form>
     </div>
 </div>

@@ -1,3 +1,10 @@
+<style>
+  /* pour mettre le var_dump en blanc
+  body {
+    color: white;
+  }
+  */
+</style>
 <?php
 //Pour éviter les notices
 if (session_status() == PHP_SESSION_NONE) {

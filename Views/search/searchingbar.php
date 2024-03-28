@@ -1,38 +1,37 @@
 <style>
     /* barre de recherche */
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
 
-    #searchForm {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        width: 85%;
-        margin: 0 auto;
-        margin-bottom: 20px;
-    }
+input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border-radius: 25px;
+    border: 1px solid white;
+    margin-bottom: 5px; 
+    background-color: transparent;
+}
 
-    input[type="text"] {
-        flex: 1;
-        padding: 8px;
-        border-radius: 25px;
-        border: 1px solid white;
-        margin-right: 5px;
-        background-color: transparent;
-    }
+button[name="searchBTN"] {
+    width: 50%; 
+    margin-top: 5px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #24C1F3;
+    color: white;
+    cursor: pointer;
+}
 
-    button[name="searchBTN"] {
-        padding: 8px 12px;
-        border: none;
-        border-radius: 5px;
-        background-color: #24C1F3;
-        color: white;
-        cursor: pointer;
-    }
-
-    button[name="searchBTN"]:hover {
-        background-color: #55EC77;
-    }
-
+button[name="searchBTN"]:hover {
+    background-color: #55EC77;
+}
     /* résultat de recherche */
 
     .user-card {
@@ -95,6 +94,7 @@
     .image-container img {
         display: inline-block;
     }
+    
 </style>
 <section>
     <div class="image-container">

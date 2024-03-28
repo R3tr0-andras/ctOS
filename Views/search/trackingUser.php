@@ -101,8 +101,19 @@
         <label for="ethnicity">Ethnicity</label>
         <div class="white-square"><?= $userSearched->userEthnic ?></div>
 
-        <!-- Button to launch live tracking -->
-        <button><a href="/trackingLive?userId=<?= $userSearched->userId ?>">Launch live tracking by ctos</a></button>
+        
+        <div>
+            <!-- Button to launch live tracking -->
+            <button>
+                <a href="/trackingLive?userId=<?= $userSearched->userId ?>">Launch live tracking by ctos</a>
+            </button>
+            <!-- Button to modify who's tracking if you're an andmin -->
+            <?php if ($_SESSION['userRole'] == "admin") : ?>
+                <button>
+                    <a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a>
+                </button>
+            <?php endif ?>
+        </div>
     </div>
     <!-- User profile image (round) -->
     <div>
@@ -116,4 +127,3 @@
         <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profileImg">
     </div>
 </section>
-<button><a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a></button>

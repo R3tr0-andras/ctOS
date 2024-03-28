@@ -7,12 +7,10 @@ But : récupérer toutes les infos de la table user
 */
 function SelectAllUsers($pdo)
 {
-
 }
 
 function SelectUsersBySearch($pdo, $searchTerm)
 {
-
 }
 
 /* 
@@ -25,7 +23,7 @@ function CreateUser($pdo)
     try {
         $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userProfileImage, userIsFaker ) 
         values (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userProfileImage, :userIsFaker)";
-        
+
         $img = uploadImage();
 
         $createUser = $pdo->prepare($query);
@@ -135,7 +133,7 @@ But : suprimer toutes les infos de la table user
 function deleteUser($pdo, $userId)
 {
     try {
-        if($_SESSION['userRole'] == 'admin') {
+        if ($_SESSION['userRole'] == 'admin') {
             $query = "delete from user where userId = :userId";
             $ajoutUser = $pdo->prepare($query);
             $ajoutUser->execute([
@@ -154,7 +152,6 @@ function deleteUser($pdo, $userId)
             $VousPouvezPas = "Vous ne pouvez pas supprimer l'utilisateur";
             echo $VousPouvezPas;
         }
-        
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
@@ -166,15 +163,16 @@ Fonction de traitement d'image de profil
 ---------------------------------------
 But : suprimer toutes les infos de la table user
 */
-function uploadImage() {
+function uploadImage()
+{
     $targetDirectory = "../Assets/Pictures/userProfile/"; // Chemin de stockage des images
-    
+
     // Vérifier si un fichier a été téléchargé
     if (!empty($_FILES["imageProfil"]["name"])) {
         $originalFileName = $_FILES["imageProfil"]["name"];
         $extension = pathinfo($originalFileName, PATHINFO_EXTENSION);
         $newFileName = $_SESSION['user']->userId . '.' . $extension; // Renommer le fichier avec l'identifiant de l'utilisateur
-        
+
         $targetFile = $targetDirectory . $newFileName;
 
         // Déplacer le fichier téléchargé vers le dossier spécifié

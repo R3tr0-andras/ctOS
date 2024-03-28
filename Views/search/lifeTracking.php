@@ -2,76 +2,56 @@
     section {
         display: flex;
         align-items: center;
- 
         justify-content: center;
-     
         height: 100%;
-       
         padding: 20px;
-       
+
     }
 
-    .container {
+    .containerRecords {
         display: flex;
         align-items: center;
-        /* Centrage vertical */
         justify-content: space-around;
-        /* Espace autour des éléments */
-        max-width: 800px;
-        /* Largeur maximale de la section */
+        max-width: 1000px;
         width: 100%;
-        /* Largeur de la section */
     }
 
     .criminal-records {
         flex: 1;
-        /* Laisser cette partie s'étirer */
         display: flex;
         flex-direction: column;
+        margin-right: 5%;
     }
 
     .profile-image-container {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-left: 5%;
     }
 
     .profile-image {
         width: 250px;
-        /* Largeur de l'image */
         height: 250px;
-        /* Hauteur de l'image */
         border-radius: 50%;
-        /* Rendre l'image ronde */
         object-fit: cover;
-        /* Remplir l'espace tout en conservant le rapport hauteur/largeur */
         margin-bottom: 20px;
-        /* Marge en bas de l'image */
     }
 
     .threat-level {
         width: 100px;
-        /* Largeur du rectangle */
         height: 50px;
-        /* Hauteur du rectangle */
         background-color: #FF0000;
-        /* Couleur de fond du rectangle */
         color: #FFF;
-        /* Couleur du texte */
         text-align: center;
-        /* Centrage du texte */
         line-height: 50px;
-        /* Centrage vertical du texte */
     }
 
     /* Style pour les enregistrements criminels */
     .criminal-records div {
         padding: 10px;
-        /* Marge intérieure pour chaque enregistrement */
         display: flex;
-        /* Utilisation de flexbox pour les éléments internes */
         align-items: center;
-        /* Centrage vertical des éléments internes */
     }
 
     .criminal-records div:nth-child(odd) {
@@ -86,33 +66,35 @@
 
     .criminal-records div p {
         margin: 0;
-        /* Supprimer les marges par défaut */
         padding-right: 10px;
-        /* Ajouter un espacement entre la date et l'enregistrement */
         color: white;
     }
 
     /* Style pour la dernière ligne des enregistrements */
     .criminal-records div:last-child {
         margin-bottom: 0;
-        /* Supprimer la marge basse pour le dernier enregistrement */
     }
 
     .criminal-records h2 {
         background-color: <?= $couleurBackground; ?>;
         color: white;
         padding: 10px;
-        /* Marge intérieure pour chaque enregistrement */
         display: flex;
-        /* Utilisation de flexbox pour les éléments internes */
-        align-items: center;
-        /* Centrage vertical des éléments internes */
         margin-bottom: 0;
     }
-</style>
 
+    .recent {
+        background-color: #24C1F3;
+        padding: 5px;
+        margin: 5%;
+    }
+
+    .recent p {
+        color: white;
+    }
+</style>
 <section>
-    <div class="container">
+    <div class="containerRecords">
         <div class="criminal-records">
             <h2>Casier judiciaire</h2>
             <?php foreach ($criminalRecordUsers as $key => $criminalRecordUser) : ?>
@@ -132,10 +114,9 @@
             ?>
             <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profile-image">
             <div class="threat-level"><?= $crimePourcentage; ?> %</div>
+            <div class="recent">
+                <p><?= $userRecentThing->recentContent; ?></p>
+            </div>
         </div>
     </div>
-</section>
-
-<section>
-    <p><?=$userRecentThing->recentContent; ?></p>
 </section>

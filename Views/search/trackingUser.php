@@ -108,7 +108,7 @@
                 <a href="/trackingLive?userId=<?= $userSearched->userId ?>">Launch live tracking by ctos</a>
             </button>
             <!-- Button to modify who's tracking if you're an andmin -->
-            <?php if ($_SESSION['userRole'] == "admin") : ?>
+            <?php if ($_SESSION['user'] -> userRole == "admin") : ?>
                 <button>
                     <a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a>
                 </button>

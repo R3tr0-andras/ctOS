@@ -1,5 +1,5 @@
 <style>
-    section {
+    .sectionProfile-info {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -8,7 +8,7 @@
         background-size: cover;
     }
 
-    div {
+    .sectionProfile-info div {
         flex: 1;
         text-align: center;
         display: flex;
@@ -45,7 +45,7 @@
         margin-top: 10px;
     }
 
-    button {
+    .buttonToTracking button {
         margin-top: 10px;
     }
 
@@ -56,7 +56,7 @@
         margin-right: 20px;
     }
 
-    button {
+    .buttonToTracking button {
         margin-top: 10px;
         background-color: #24C1F3;
         width: 800px;
@@ -68,7 +68,7 @@
         cursor: pointer;
     }
 
-    button a {
+    .buttonToTracking button a {
         text-decoration: none;
         color: inherit;
         display: block;
@@ -78,7 +78,7 @@
     }
 </style>
 
-<section>
+<section class="sectionProfile-info">
     <!-- User profile information -->
     <div id="profile-info">
         <label for="name">Name</label>
@@ -102,7 +102,9 @@
         <div class="white-square"><?= $_SESSION['user']->userEthnic ?></div>
 
         <!-- Button to launch live tracking -->
-        <button><a href="/tracking">Launch live tracking by ctos</a></button>
+        <div class="buttonToTracking">
+            <button><a href="/tracking">Launch live tracking by ctos</a></button>
+        </div>
     </div>
     <!-- User profile image (round) -->
     <div>

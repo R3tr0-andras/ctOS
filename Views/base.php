@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../Assets/Css/fonts.css">
     <link rel="stylesheet" href="../Assets/Css/flex.css">
     <link rel="stylesheet" href="../Assets/Css/keyframes.css">
+    <link rel="stylesheet" href="../Assets/Css/searchBar.css">
     <style>
         header {
             background-color: <?= $couleurBackground; ?>;

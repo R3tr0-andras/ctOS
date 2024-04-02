@@ -1,120 +1,113 @@
 <style>
-    .sectionProfile-info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-image: url('path/to/your/background-image.jpg');
-        background-size: cover;
-    }
 
-    .sectionProfile-info div {
-        flex: 1;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+        .sectionProfile-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('path/to/your/background-image.jpg');
+            background-size: cover;
+            padding: 20px;
+        }
 
-    #profile-info {
-        background-color: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        #profile-info {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-    .white-square {
-        width: 350px;
-        height: 50px;
-        background-color: white;
-        margin: 0 auto;
-        border: 1px solid black;
-    }
+        .white-square {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
 
-    .flex-container {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        margin-top: 10px;
-    }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 15px;
+        }
 
-    .buttonToTracking button {
-        margin-top: 10px;
-    }
+        .buttonToTracking {
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
 
-    .profileImg {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
+        .buttonToTracking button {
+            background-color: #24C1F3;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .buttonToTracking button {
-        margin-top: 10px;
-        background-color: #24C1F3;
-        width: 800px;
-        height: 125px;
-        border: none;
-        color: white;
-        font-size: 24px;
-        font-weight: bold;
-        cursor: pointer;
-    }
+        .buttonToTracking button:hover {
+            background-color: #1a90bb;
+        }
 
-    .buttonToTracking button a {
-        text-decoration: none;
-        color: inherit;
-        display: block;
-        height: 100%;
-        width: 100%;
-        padding: 50px;
-    }
-</style>
-
+        .profileImg {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-top: 20px;
+        }
+    </style>
 <section class="sectionProfile-info">
-    <!-- User profile information -->
-    <div id="profile-info">
-        <label for="name">Name</label>
-        <div class="white-square"><?= $_SESSION['user']->userName ?> <?= $_SESSION['user']->userFirstName ?></div>
+        <!-- User profile information -->
+        <div id="profile-info">
+            <label for="name">Name</label>
+            <div class="white-square"><?= $_SESSION['user']->userName ?> <?= $_SESSION['user']->userFirstName ?></div>
 
-        <div class="flex-container">
-            <div>
-                <label for="gender">Gender</label>
-                <div class="white-square"><?= $_SESSION['user']->userGenre ?></div>
+            <div class="flex-container">
+                <div>
+                    <label for="gender">Gender</label>
+                    <div class="white-square"><?= $_SESSION['user']->userGenre ?></div>
+                </div>
+                <div>
+                    <label for="birthday">Birthday date</label>
+                    <div class="white-square"><?= $_SESSION['user']->userBirthDate ?></div>
+                </div>
             </div>
-            <div>
-                <label for="birthday">Birthday date</label>
-                <div class="white-square"><?= $_SESSION['user']->userBirthDate ?></div>
+
+            <label for="phone">Phone number</label>
+            <div class="white-square"><?= $_SESSION['user']->userPhoneNumber ?></div>
+
+            <label for="ethnicity">Ethnicity</label>
+            <div class="white-square"><?= $_SESSION['user']->userEthnic ?></div>
+
+            <!-- Button to launch live tracking -->
+            <div class="buttonToTracking">
+                <button><a href="/tracking">Launch live tracking by ctos</a></button>
             </div>
         </div>
-
-        <label for="phone">Phone number</label>
-        <div class="white-square"><?= $_SESSION['user']->userPhoneNumber ?></div>
-
-        <label for="ethnicity">Ethnicity</label>
-        <div class="white-square"><?= $_SESSION['user']->userEthnic ?></div>
-
-        <!-- Button to launch live tracking -->
-        <div class="buttonToTracking">
-            <button><a href="/tracking">Launch live tracking by ctos</a></button>
+        <!-- User profile image (round) -->
+        <div>
+            <?php 
+                if (isset($_SESSION['user']) && $_SESSION['user']->userIsFaker == 1) {
+                    $profileImage = "../Assets/Pictures/fakerProfile/" . $_SESSION['user']->userProfileImage;
+                } else {
+                    $profileImage = "../Assets/pictures/userProfile/" . $_SESSION['user']->userProfileImage;
+                }
+            ?>
+            <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profileImg">
         </div>
-    </div>
-    <!-- User profile image (round) -->
-    <div>
-        <?php 
-            if (isset($_SESSION['user']) && $_SESSION['user']->userIsFaker == 1) {
-                $profileImage = "../Assets/Pictures/fakerProfile/" . $_SESSION['user']->userProfileImage;
-            } else {
-                $profileImage = "../Assets/pictures/userProfile/" . $_SESSION['user']->userProfileImage;
-            }
-        ?>
-        <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profileImg">
-    </div>
-</section>
+    </section>

@@ -1,4 +1,4 @@
-<form class="formCoAndIn" method="post" action="">
+<form class="formCoAndIn" method="post" action="" enctype="multipart/form-data">
     <h1 class="titreForm">Page d'inscription aux serveurs du CtOS 2.0</h1>
     <!-- Prénom, Nom de famille et Pseudo en ligne -->
     <div class="form-row">
@@ -93,6 +93,14 @@
             <?php if (isset($messageErreur["Tel"])) : ?>
                 <small><?= $messageErreur["Tel"] ?></small>
             <?php endif ?>
+        </div>
+    </div>
+    <!-- Image de profil -->
+    <div class="form-row">
+        <div>
+            <label class="labelFormCoAndIn" for="profile-image">Profile Image</label>
+            <input type="file" id="profile-image" name="profile_image">
+            <!-- You can add error message handling for profile image if needed -->
         </div>
     </div>
     <!-- Bouton d'envoi du formulaire-->

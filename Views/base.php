@@ -5,6 +5,8 @@
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Material Icon CDN -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Liens-->
     <link rel="stylesheet" href="../Assets/Css/styles.css">
     <link rel="stylesheet" href="../Assets/Css/fonts.css">
@@ -48,11 +50,7 @@
     </div>
     -->
     <!-- menu script -->
-    <script src=""> </script>
-    <!-- footer script -->
-    <script src=""> </script>
-    <!-- DOM : list des noms possible pour barre de recherche 
-    <script src="Assets\Scripts\search.js"> </script>-->
+    <script src="Assets\Scripts\menuHeader.js"> </script>
 </body>
 
 </html>

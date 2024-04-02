@@ -21,10 +21,11 @@ But : creer des éléments dans la table user
 function CreateUser($pdo)
 {
     try {
-        $query = "insert into user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userProfileImage, userIsFaker ) 
-        values (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userProfileImage, :userIsFaker)";
+        $query = "INSERT INTO user(userName, userFirstName, userPseudo, userPassword, userEmail, userRole, userGenre, userBirthDate, userPhoneNumber, userEthnic, userJobs, userIncome, userProfileImage, userIsFaker) 
+        VALUES (:userName, :userFirstName, :userPseudo, :userPassword, :userEmail, :userRole, :userGenre, :userBirthDate, :userPhoneNumber, :userEthnic, :userJobs, :userIncome, :userProfileImage, :userIsFaker)";
 
-        $img = uploadImage();
+        // Function to handle image upload
+        $img = uploadImageProfile();
 
         $createUser = $pdo->prepare($query);
 
@@ -47,6 +48,27 @@ function CreateUser($pdo)
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);
+    }
+}
+
+function uploadImageProfile()
+{
+    $upload_dir = 'Assets/Pictures/userProfile/';
+
+    if ($_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
+        $tmp_name = $_FILES['profile_image']['tmp_name'];
+        $original_name = $_FILES['profile_image']['name'];
+        $extension = pathinfo($original_name, PATHINFO_EXTENSION);
+        $new_name = 'userProfile' . date('YmdHis') . '.' . $extension;
+        $destination = $upload_dir . $new_name;
+        
+        if (move_uploaded_file($tmp_name, $destination)) {
+            return $new_name;
+        } else {
+            die("Failed to move uploaded file.");
+        }
+    } else {
+        die("File upload failed.");
     }
 }
 

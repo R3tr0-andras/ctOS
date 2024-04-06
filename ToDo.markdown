@@ -2,8 +2,6 @@
 
 # To do
 - Le coté visuel est pas dutout fini
-- affichage des infos 
-- Intégrer chartLib au projet
 - Mettre en responsiv
 
 # Bonus
@@ -31,6 +29,5 @@
 
 # Element intégré
 - Header
-- Footer
 - les images de profil qui diffèrent entre utilisateurs
 - la couleur par rapport à la dangerosié

@@ -314,4 +314,60 @@ function GetRecent()
     return $recent['thing'];
 }
 
-/*  */
+/* Obtenir le dernier faker crée */
+function GetLastFaker($pdo, $userId) {
+try {
+        $query = "select * from user where userId = " . $userId;
+
+        $selectFakerToSee = $pdo->prepare($query);
+
+        $selectFakerToSee->execute([
+            'userId' => $userId // récupération du paramètre
+        ]);
+
+        $fakerToSee = $selectFakerToSee->fetchAll(); // récupération d'un enregistrement
+
+        return $fakerToSee;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}
+
+function GetFakerCriminalRecordUser($pdo ,$userId) {
+    try {
+        $query = "select * from criminal_record where userId = " . $userId;
+
+        $selectUserToTracking = $pdo->prepare($query);
+
+        $selectUserToTracking->execute([
+            'userId' => $userId // récupération du paramètre
+        ]);
+
+        $userCriminalRecord = $selectUserToTracking->fetchAll(); // récupération d'un enregistrement
+
+        return $userCriminalRecord;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}
+
+function GetFakerRecent($pdo ,$userId) {
+    try {
+        $query = "select * from recent where userId = " . $userId;
+
+        $selectUserToTracking = $pdo->prepare($query);
+
+        $selectUserToTracking->execute([
+            'userId' => $userId // récupération du paramètre
+        ]);
+
+        $userRecentThing = $selectUserToTracking->fetch(); // récupération d'un enregistrement
+
+        return $userRecentThing;
+    } catch (PDOException $e) {
+        $message = $e->getmessage();
+        die($message);
+    }
+}

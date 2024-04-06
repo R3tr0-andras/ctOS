@@ -1,37 +1,3 @@
-<style>
-    .hamburger {
-        position: fixed;
-        z-index: 100;
-        top: 1rem;
-        right: 1rem;
-        padding: 4px;
-        border: black solid 1px;
-        cursor: pointer;
-    }
-
-    .closeIcon {
-        display: none;
-    }
-
-    .menu {
-        position: fixed;
-        transform: translateY(-100%);
-        transition: transform 0.2s;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 99;
-        background: black;
-        color: white;
-        list-style: none;
-        padding-top: 4rem;
-    }
-
-    .showMenu {
-        transform: translateY(0);
-    }
-</style>
 <a href="/index.php">
     <img src="Assets\Pictures\ctos_logo_bgRemoved.png" alt="Logo" class="logoImg">
 </a>

@@ -15,11 +15,15 @@ if ($uri === '/fakerCreator') {
         //var_dump($userId);
         CreateCriminalFaker($pdo, $userId);
         CreateRecentThing($pdo, $userId);
+
+        $newfakerResult = GetLastFaker($pdo, $userId);
+        $newFakerCriminalRecord = GetFakerCriminalRecordUser($pdo ,$userId);
+        $newFakerRecent = GetFakerRecent($pdo ,$userId);
     } else {
         // Vérifier les champs vides
         $messageErreur = verifEmpty();
         if (!$messageErreur) {
-
+            
         }
     }
     // Couleur

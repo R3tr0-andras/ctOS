@@ -1,0 +1,81 @@
+.titreForm {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styles du conteneur du formulaire */
+.formCoAndIn {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles des étiquettes du formulaire */
+.labelFormCoAndIn {
+    font-weight: bold;
+    color: white;
+    padding-bottom: 1px;
+}
+
+/* Styles des champs de saisie */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="tel"],
+select {
+    width: 100%; /* Pour compenser le padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid white;
+    border-radius: 25px;
+    box-sizing: border-box; /* Assure que le padding et la bordure sont inclus dans la largeur totale de l'élément */
+    color: white; /* Couleur du texte */
+    background-color: transparent; /* Fond transparent */
+}
+
+/* Placeholder en blanc pour les champs de saisie */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="date"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder,
+select::placeholder {
+    color: white;
+}
+
+/* Style du bouton de soumission */
+.buttonForm {
+    width: 100%;
+    margin-top: 2px;
+    padding: 10px;
+    color: #fff;
+    border: 1px solid #24C1F3;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+}
+
+.buttonForm:hover {
+    background-color: #24C1F3;
+    font-weight: bold;
+}
+
+/* Styles pour aligner les champs sur la même ligne */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.form-row > div {
+    width: calc(50% - 10px);
+}

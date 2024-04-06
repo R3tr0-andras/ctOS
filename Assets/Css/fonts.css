@@ -10,3 +10,19 @@ nav a {
 a:hover {
     color: rgb(77, 204, 255);
 }
+
+/*  messages d'erreur */
+small {
+    color: red;
+}
+
+select option {
+    color: black;
+}
+
+.copyright {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    /* Adjust the size as needed */
+}

@@ -4,8 +4,8 @@
     </div>
     <div>
         <form id="searchForm" method="POST">
-            <input type="text" name="searchText" placeholder="searching a name" value="" class="searchBar">
-            <button name="searchBTN">Search</button>
+            <input type="text" name="searchText" placeholder="searching a name" value="" class="searchBar searchInput">
+            <button name="searchBTN" class="searchButton">Search</button>
         </form>
     </div>
     <div class="results-container">

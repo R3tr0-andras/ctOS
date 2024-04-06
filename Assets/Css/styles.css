@@ -5,7 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-     background-image: url(/Assets/Pictures/profileBackground.jpg); 
+    background-image: url(/Assets/Pictures/profileBackground.jpg);
     /* background-image: url(/Assets/Pictures/profileBackground.jpg); */
 }
 
@@ -26,11 +26,45 @@ header .logoImg {
     height: 45px;
 }
 
+.hamburger {
+    position: fixed;
+    z-index: 100;
+    top: 1rem;
+    right: 1rem;
+    padding: 4px;
+    border: black solid 1px;
+    cursor: pointer;
+}
+
+.closeIcon {
+    display: none;
+}
+
+.menu {
+    position: fixed;
+    transform: translateY(-100%);
+    transition: transform 0.2s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: black;
+    color: white;
+    list-style: none;
+    padding-top: 4rem;
+}
+
+.showMenu {
+    transform: translateY(0);
+}
+
 /* Partie Main de la page home */
 
 main {
     box-sizing: border-box;
-    min-height: calc(100% - 100px); /* Taille du viewport - taille du footer */
+    min-height: calc(100% - 100px);
+    /* Taille du viewport - taille du footer */
     display: flex;
     flex-direction: column;
 }
@@ -65,141 +99,6 @@ iframe {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Partie footer */
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 100px; /* Ajustez selon votre besoin */
-    background-color: #f0f0f0; /* Couleur de fond à titre d'exemple */
-    display: flex;
-    align-items: center; /* Alignement vertical */
-    justify-content: center; /* Alignement horizontal */
-    text-align: center;
-    padding: 10px;
-}
-
-.copyright {
-    color: white;
-    font-weight: bold;
-    font-size: 1.2em;
-    /* Adjust the size as needed */
-}
-
-/* Scroll bar */
-body::-webkit-scrollbar {
-    width: 12px;
-    /* width of the entire scrollbar */
-}
-
-body::-webkit-scrollbar-track {
-    background: black;
-    /* color of the tracking area */
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: white;
-    /* color of the scroll thumb */
-    border-radius: 20px;
-    /* roundness of the scroll thumb */
-    /*border: 3px solid orange;*/
-    /* creates padding around scroll thumb */
-}
-
-/* Styles du conteneur du formulaire */
-.formCoAndIn {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: transparent;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles des étiquettes du formulaire */
-.labelFormCoAndIn {
-    font-weight: bold;
-    color: white;
-    padding-bottom: 1px;
-}
-
-/* Styles des champs de saisie */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"],
-input[type="number"],
-input[type="tel"],
-select {
-    width: 100%; /* Pour compenser le padding */
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid white;
-    border-radius: 25px;
-    box-sizing: border-box; /* Assure que le padding et la bordure sont inclus dans la largeur totale de l'élément */
-    color: white; /* Couleur du texte */
-    background-color: transparent; /* Fond transparent */
-}
-
-/* Placeholder en blanc pour les champs de saisie */
-input[type="text"]::placeholder,
-input[type="email"]::placeholder,
-input[type="password"]::placeholder,
-input[type="date"]::placeholder,
-input[type="number"]::placeholder,
-input[type="tel"]::placeholder,
-select::placeholder {
-    color: white;
-}
-
-/* Style du bouton de soumission */
-.buttonForm {
-    width: 100%;
-    margin-top: 2px;
-    padding: 10px;
-    color: #fff;
-    border: 1px solid #24C1F3;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    background-color: transparent;
-}
-
-.buttonForm:hover {
-    background-color: #24C1F3;
-    font-weight: bold;
-}
-
-/* Styles des messages d'erreur */
-small {
-    color: red;
-}
-
-.titreForm {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Styles pour aligner les champs sur la même ligne */
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.form-row > div {
-    width: calc(50% - 10px);
-}
-
-@media (max-width: 768px) {
-    .form-row > div {
-        width: 100%;
-    }
-}
-
 .lienVersConnexion {
     color: white;
     display: flex;
@@ -214,101 +113,4 @@ small {
 .lienVersConnexion a:hover {
     color: #007bff;
     font-weight: bold;
-}
-select option {
-    color: black;
-}
-
-/* Life Tracking */
-.sectionTrack {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 20px;
-
-}
-
-.containerRecords {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 1000px;
-    width: 100%;
-}
-
-.criminal-records {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    margin-right: 5%;
-}
-
-.profile-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 5%;
-}
-
-.profile-image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-.threat-level {
-    width: 100px;
-    height: 50px;
-    background-color: #FF0000;
-    color: #FFF;
-    text-align: center;
-    line-height: 50px;
-}
-
-/* Style pour les enregistrements criminels */
-.criminal-records div {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-}
-
-.criminal-records div:nth-child(odd) {
-    background-color: #464646;
-    /* impair */
-}
-
-.criminal-records div:nth-child(even) {
-    background-color: #6A6A6A;
-    /* pair */
-}
-
-.criminal-records div p {
-    margin: 0;
-    padding-right: 10px;
-    color: white;
-}
-
-/* Style pour la dernière ligne des enregistrements */
-.criminal-records div:last-child {
-    margin-bottom: 0;
-}
-
-.criminal-records h2 {
-    color: white;
-    padding: 10px;
-    display: flex;
-    margin-bottom: 0;
-}
-
-.recent {
-    background-color: #24C1F3;
-    padding: 5px;
-    margin: 5%;
-}
-
-.recent p {
-    color: white;
 }

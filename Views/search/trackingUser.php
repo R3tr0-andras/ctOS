@@ -8,7 +8,7 @@
         background-size: cover;
     }
 
-    div {
+    .divBasic {
         flex: 1;
         text-align: center;
         display: flex;
@@ -45,7 +45,7 @@
         margin-top: 10px;
     }
 
-    button {
+    .buttonTracking {
         margin-top: 10px;
     }
 
@@ -56,7 +56,7 @@
         margin-right: 20px;
     }
 
-    button {
+    .buttonTracking {
         margin-top: 10px;
         background-color: #24C1F3;
         width: 800px;
@@ -68,7 +68,7 @@
         cursor: pointer;
     }
 
-    button a {
+    .buttonTracking a {
         text-decoration: none;
         color: inherit;
         display: block;
@@ -82,12 +82,12 @@
     <!-- User profile information -->
     <div id="profile-info">
         <label for="name">Name</label>
-        <div class="white-square"><?= $userSearched->userName ?> <?= $userSearched->userFirstName ?></div>
+        <div><?= $userSearched->userName ?> <?= $userSearched->userFirstName ?></div>
 
-        <div class="flex-container">
+        <div>
             <div>
                 <label for="gender">Gender</label>
-                <div class="white-square"><?= $userSearched->userGenre ?></div>
+                <div><?= $userSearched->userGenre ?></div>
             </div>
             <div>
                 <label for="birthday">Birthday date</label>
@@ -96,20 +96,18 @@
         </div>
 
         <label for="phone">Phone number</label>
-        <div class="white-square"><?= $userSearched->userPhoneNumber ?></div>
+        <div><?= $userSearched->userPhoneNumber ?></div>
 
         <label for="ethnicity">Ethnicity</label>
-        <div class="white-square"><?= $userSearched->userEthnic ?></div>
-
-        
+        <div><?= $userSearched->userEthnic ?></div>
         <div>
             <!-- Button to launch live tracking -->
-            <button>
+            <button class="buttonTracking">
                 <a href="/trackingLive?userId=<?= $userSearched->userId ?>">Launch live tracking by ctos</a>
             </button>
             <!-- Button to modify who's tracking if you're an andmin -->
             <?php if ($_SESSION['user'] -> userRole == "admin") : ?>
-                <button>
+                <button class="buttonTracking">
                     <a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a>
                 </button>
             <?php endif ?>
@@ -124,6 +122,6 @@
                 $profileImage = "../Assets/pictures/userProfile/" . $userSearched->userProfileImage;
             }
         ?>
-        <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profileImg">
+        <img src="<?= htmlspecialchars($profileImage); ?>" alt="image de profil">
     </div>
 </section>

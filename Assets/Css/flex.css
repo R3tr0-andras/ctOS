@@ -17,3 +17,9 @@
 .align-center {
     align-items: center;
 }
+
+@media (max-width: 768px) {
+    .form-row > div {
+        width: 100%;
+    }
+}

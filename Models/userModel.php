@@ -61,7 +61,7 @@ function uploadImageProfile()
         $extension = pathinfo($original_name, PATHINFO_EXTENSION);
         $new_name = 'userProfile' . date('YmdHis') . '.' . $extension;
         $destination = $upload_dir . $new_name;
-        
+
         if (move_uploaded_file($tmp_name, $destination)) {
             return $new_name;
         } else {
@@ -102,7 +102,7 @@ function connexionUser($pdo)
 }
 
 //Modifier un utilisateur
-function UpdateUser($pdo, $userId, $img)
+function UpdateUser($pdo, $userId)
 {
     try {
         $query = "UPDATE user SET 
@@ -117,11 +117,8 @@ function UpdateUser($pdo, $userId, $img)
                     userPhoneNumber = :userPhoneNumber,
                     userEthnic = :userEthnic,
                     userJobs = :userJobs,
-                    userIncome = :userIncome,
-                    userProfileImage = :userProfileImage
+                    userIncome = :userIncome
                 WHERE userId = :userId";
-
-        // You need to handle image upload separately if you want to update profile image.
 
         $updateUser = $pdo->prepare($query);
 
@@ -138,9 +135,11 @@ function UpdateUser($pdo, $userId, $img)
             'userEthnic' => $_POST['Ethnie'],
             'userJobs' => $_POST['Job'],
             'userIncome' => $_POST['Income'],
-            'userProfileImage' => $img, // You need to handle image upload here.
             'userId' => $userId
         ]);
+
+        // Optionally handle image upload separately if you want to update profile image.
+
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);

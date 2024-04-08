@@ -16,9 +16,8 @@
 
     <label for="Genre">Genre</label>
     <select id="Genre" name="Genre" required>
-        <option value="Male" <?= ($userSearched->userGenre === "M") ? "selected" : "" ?>>Homme</option>
-        <option value="Female" <?= ($userSearched->userGenre === "F") ? "selected" : "" ?>>Femme</option>
-        <option value="Other" <?= ($userSearched->userGenre === "O") ? "selected" : "" ?>>Autre</option>
+        <option value="M" <?= ($userSearched->userGenre === "M") ? "selected" : "" ?>>M</option>
+        <option value="F" <?= ($userSearched->userGenre === "F") ? "selected" : "" ?>>F</option>
     </select><br>
 
     <label for="Date">Date de naissance</label>

@@ -6,5 +6,6 @@
     </section>
     <section class="class=" CtosExplain"">
         <iframe width="1280" height="720" src="https://www.youtube.com/embed/iHF0239a8jo" title="ctOS 2.0 Presentation - FR" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </section>
+            <iframe width="1280" height="720" src="https://www.youtube.com/embed/vRYfGtIOU6U?si=BWW29gDLzBYX5CZ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </section>
 </div>

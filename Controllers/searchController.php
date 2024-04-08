@@ -60,22 +60,29 @@ if ($uri === '/searching') {
     $template = "Views\search\lifeTracking.php";
     require_once("Views\base.php");
 } elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
+    // Initialize $userId with the user ID from GET parameter
+    $userId = $_GET["userId"];
+
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
     $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
     $userRecentThing = GetTableRecent($pdo);
 
     // Gestion des couleurs
-    $couleurBackground = getColorFromPercentage($pdo);
-    $crimePourcentage = calculateCrimePercentage($pdo);
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
+
     if (isset($_POST['modifyBTN'])) {
-        if (UpdateUser($pdo, $userId, $img)) {
+        if (UpdateUser($pdo, $userId)) {
+            var_dump("test concluant");
             // Gestion des routes
             $title = "Tracking";
             $template = "Views/search/trackingUser.php";
             require_once("Views\base.php");
+            exit; // Stop further execution after redirection
         } else {
-            // Gestion des routes
+            // Handle update failure
+            // You might want to set an error message here
         }
     }
 

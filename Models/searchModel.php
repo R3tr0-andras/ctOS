@@ -76,3 +76,24 @@ function GetTableRecent($pdo) {
         die($message);
     }
 }
+
+function createCriminalRecord($pdo) {
+    try {
+        $today = date("Y-m-d H:i:s"); 
+
+        $query = "INSERT INTO criminal_record(userId, recordReason, recordDate, recordDangerousness) 
+        VALUES (:userId, :recordReason, :recordDate, :recordDangerousness)";
+
+        $createRecord = $pdo->prepare($query);
+
+        $createRecord->execute([
+            'userId' => $_GET["userId"],
+            'recordReason' => $_POST['recordReason'],
+            'recordDate' => $today,
+            'recordDangerousness' => $_POST['recordDangerousness']
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}

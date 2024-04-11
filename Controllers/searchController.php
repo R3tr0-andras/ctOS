@@ -60,9 +60,6 @@ if ($uri === '/searching') {
     $template = "Views\search\lifeTracking.php";
     require_once("Views\base.php");
 } elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
-    // Initialize $userId with the user ID from GET parameter
-    $userId = $_GET["userId"];
-
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
     $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
@@ -73,7 +70,7 @@ if ($uri === '/searching') {
     $crimePourcentage = 0;
 
     if (isset($_POST['modifyBTN'])) {
-        if (UpdateUser($pdo, $userId)) {
+        if (UpdateUser($pdo)) {
             var_dump("test concluant");
             // Gestion des routes
             $title = "Tracking";
@@ -89,5 +86,32 @@ if ($uri === '/searching') {
     // Gestion des routes
     $title = "Modification";
     $template = "Views\Users\modifyProfil.php";
+    require_once("Views\base.php");
+} elseif (isset($_GET["userId"]) && $uri === "/setCriminalRecord?userId=" . $_GET["userId"]) {
+    // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
+    $userSearched = GetTableUser($pdo);
+    $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
+    $userRecentThing = GetTableRecent($pdo);
+
+    // Gestion des couleurs
+    $couleurBackground = "#000000";
+    $crimePourcentage = 0;
+
+    if (isset($_POST['AddBTN'])) {
+        if (createCriminalRecord($pdo)) {
+            //var_dump("test concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views/base.php");
+        } else {
+            // Handle update failure
+            // You might want to set an error message here
+        }
+    }
+
+    // Gestion des routes
+    $title = "Ajout";
+    $template = "Views\search\setCriminalRecord.php";
     require_once("Views\base.php");
 }

@@ -102,7 +102,7 @@ function connexionUser($pdo)
 }
 
 //Modifier un utilisateur
-function UpdateUser($pdo, $userId)
+function UpdateUser($pdo)
 {
     try {
         $query = "UPDATE user SET 
@@ -135,11 +135,8 @@ function UpdateUser($pdo, $userId)
             'userEthnic' => $_POST['Ethnie'],
             'userJobs' => $_POST['Job'],
             'userIncome' => $_POST['Income'],
-            'userId' => $userId
+            'userId' => $_GET["userId"]
         ]);
-
-        // Optionally handle image upload separately if you want to update profile image.
-
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);

@@ -45,7 +45,9 @@ if ($uri === '/searching') {
     $title = "Tracking";
     $template = "Views/search/trackingUser.php";
     require_once("Views\base.php");
-} elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["userId"]) {
+} 
+
+elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
     $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
@@ -55,11 +57,30 @@ if ($uri === '/searching') {
     $couleurBackground = getColorFromPercentage($pdo);
     $crimePourcentage = calculateCrimePercentage($pdo);
 
+    // Gestion des forms
+    if (isset($_POST['ModBTN'])) {
+        if (UpdateCriminalRecord($pdo)) {
+            var_dump("test concluant");
+            header("Refresh:1");
+        } else {
+            var_dump("test non concluant");
+        }
+    } else if (isset($_POST['DelBTN'])) {
+        if (DeleteCriminalRecord($pdo)) {
+            var_dump("test concluant");
+            header("Refresh:1");
+        } else {
+            var_dump("test non concluant");
+        }
+    }
+
     // Gestion des routes
     $title = "Live Tracking";
     $template = "Views\search\lifeTracking.php";
     require_once("Views\base.php");
-} elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
+} 
+
+elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
     $criminalRecordUsers = GetTableCriminalRecordUser($pdo);

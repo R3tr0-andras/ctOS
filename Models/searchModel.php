@@ -97,3 +97,38 @@ function createCriminalRecord($pdo) {
         die($message);
     }
 }
+
+function UpdateCriminalRecord($pdo) {
+    try {
+        $query = "UPDATE criminal_record SET 
+            recordDate = :recordDate,
+            recordReason = :recordReason
+        WHERE recordId = :recordId";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'recordDate' => $_POST['recordDate'],
+            'recordReason' => $_POST['recordReason'],
+            'recordId' => $_POST['ModBTN']
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+function DeleteCriminalRecord($pdo) {
+    try {
+        $query = "delete from criminal_record where recordId = :recordId";
+
+        $updateUser = $pdo->prepare($query);
+
+        $updateUser->execute([
+            'recordId' => $_POST['DelBTN']
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}

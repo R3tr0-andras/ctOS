@@ -91,3 +91,74 @@
 .recent p {
     color: white;
 }
+
+.trackSect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#profile-info {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.imageP-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+}
+
+.imgProfil {
+    width: 300px;
+    border-radius: 25px;
+}
+
+.trackSect div {
+    justify-content: space-around;
+}
+
+label {
+    font-weight: bold;
+}
+
+.user-data {
+    margin-bottom: 20px;
+}
+
+.user-data div {
+    margin-top: 5px;
+}
+
+.buttonTracking {
+    margin-top: 20px;
+    background-color: #24C1F3;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonTracking a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.buttonTracking:hover {
+    background-color: #E64A19;
+}
+
+.profileImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 20px;
+}

@@ -18,28 +18,5 @@
         </div>
     </div>
 
-    <button type="button" onclick="addRecord()">Ajouter un autre enregistrement</button><br>
-
     <button type="" name="AddBTN">adding</button>
 </form>
-
-<script>
-    function addRecord() {
-        var recordsDiv = document.getElementById("records");
-        var newRecordDiv = document.createElement("div");
-        newRecordDiv.classList.add("record");
-
-        newRecordDiv.innerHTML = `
-            <label for="recordReason">Raison:</label>
-            <input type="text" name="recordReason"><br>
-
-            <label for="recordDangerousness">Dangerosité:</label>
-            <select id="Genre" name="recordDangerousness" required>
-                <option value="severe">Severe</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-            </select><br>
-        `;
-        recordsDiv.appendChild(newRecordDiv);
-    }
-</script>

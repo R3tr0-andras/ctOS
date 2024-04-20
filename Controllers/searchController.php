@@ -1,9 +1,11 @@
 <?php
 
-// Inclure le modèle utilisateur
-require_once "Models\userModel.php";
-require_once "Models\searchModel.php";
-require_once("Models\dangerousnessModel.php");
+// Inclure le modèle utilisateur et crud
+require_once ("Models/userModel.php");
+require_once ("Models/searchModel.php");
+require_once ("Models/dangerousnessModel.php");
+require_once ("Models/criminalRecent.php");
+require_once ("Models/recentModel.php");
 
 // Récupérer l'URI de la requête
 $uri = $_SERVER['REQUEST_URI'];
@@ -32,7 +34,9 @@ if ($uri === '/searching') {
         $template = "Views\search\searchingbar.php";
         require_once("Views\base.php");
     }
-} elseif (isset($_GET["userId"]) && $uri === "/trackingUser?userId=" . $_GET["userId"]) {
+}
+// Tracker le profil
+elseif (isset($_GET["userId"]) && $uri === "/trackingUser?userId=" . $_GET["userId"]) {
     // Gestion des couleurs
     $couleurBackground = "#000000";
     $crimePourcentage = 0;
@@ -45,8 +49,8 @@ if ($uri === '/searching') {
     $title = "Tracking";
     $template = "Views/search/trackingUser.php";
     require_once("Views\base.php");
-} 
-
+}
+// Tracker le casier judiciaire
 elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
@@ -57,20 +61,79 @@ elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["user
     $couleurBackground = getColorFromPercentage($pdo);
     $crimePourcentage = calculateCrimePercentage($pdo);
 
-    // Gestion des forms
+    // Gestion du Crud des casier judiciaires
     if (isset($_POST['ModBTN'])) {
         if (UpdateCriminalRecord($pdo)) {
             var_dump("test concluant");
-            header("Refresh:1");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         } else {
             var_dump("test non concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         }
     } else if (isset($_POST['DelBTN'])) {
         if (DeleteCriminalRecord($pdo)) {
             var_dump("test concluant");
-            header("Refresh:1");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         } else {
             var_dump("test non concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        }
+    }
+
+    // Gestion du Crud des recent
+    if (isset($_POST['RecentAddBTN'])) {
+        if (AddRecent($pdo)) {
+            var_dump("test concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        } else {
+            var_dump("test non concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        }
+    } else if (isset($_POST['RecentModBTN'])) {
+        if (UpdateRecent($pdo)) {
+            var_dump("test concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        } else {
+            var_dump("test non concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        }
+    } else if (isset($_POST['RecentDelBTN'])) {
+        if (DeleteRencent($pdo)) {
+            var_dump("test concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
+        } else {
+            var_dump("test non concluant");
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         }
     }
 
@@ -78,8 +141,8 @@ elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["user
     $title = "Live Tracking";
     $template = "Views\search\lifeTracking.php";
     require_once("Views\base.php");
-} 
-
+}
+// Modifier un profil
 elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
@@ -108,7 +171,9 @@ elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["user
     $title = "Modification";
     $template = "Views\Users\modifyProfil.php";
     require_once("Views\base.php");
-} elseif (isset($_GET["userId"]) && $uri === "/setCriminalRecord?userId=" . $_GET["userId"]) {
+}
+// Ajouter un reccord
+elseif (isset($_GET["userId"]) && $uri === "/setCriminalRecord?userId=" . $_GET["userId"]) {
     // Récuppération des informations utilisatrices SPECIFIQUE à un utilisateur
     $userSearched = GetTableUser($pdo);
     $criminalRecordUsers = GetTableCriminalRecordUser($pdo);
@@ -124,10 +189,13 @@ elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["user
             // Gestion des routes
             $title = "Tracking";
             $template = "Views/search/trackingUser.php";
-            require_once("Views/base.php");
+            require_once("Views\base.php");
         } else {
             // Handle update failure
-            // You might want to set an error message here
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         }
     }
 

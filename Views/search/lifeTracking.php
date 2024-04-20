@@ -52,9 +52,21 @@ if (isset($_SESSION['user']) && $userSearched->userIsFaker == 1) {
             </div>
             <div class="profile-image-container">
                 <img src="<?= htmlspecialchars($profileImage); ?>" alt="" class="profile-image">
-                <div class="threat-level"><?= htmlspecialchars($crimePourcentage); ?> %</div>
+                <?php if (!empty($crimePourcentage)) : ?>
+                    <div class="threat-level"><?= htmlspecialchars($crimePourcentage); ?> %</div>
+                <?php endif; ?>
                 <div class="recent">
-                    <p><?= htmlspecialchars($userRecentThing->recentContent); ?></p>
+                    <form method="post">
+                        <?php if (!empty($userRecentThing) && !empty($userRecentThing->recentContent)) : ?>
+                            <?php $recentContent = !empty($userRecentThing->recentContent) ? htmlspecialchars($userRecentThing->recentContent) : ''; ?>
+                            <input type="text" value="<?= $recentContent ?>" name="recentContentMod">
+                            <button class="buttonTracking" name="RecentModBTN" value="<?= !empty($userRecentThing) ? $userRecentThing->recentId : '' ?>">Modifier</button>
+                        <?php else : ?>
+                            <input type="text" placeholder="Ajouter du contenu..." name="recentContentAdd">
+                            <button class="buttonTracking" name="RecentAddBTN">Ajouter</button>
+                        <?php endif; ?>
+                        <button class="buttonTracking" name="RecentDelBTN" value="<?= !empty($userRecentThing) ? $userRecentThing->recentId : '' ?>">Supprimer</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -1,10 +1,11 @@
 # Bug
+- Calcul du pourcentage de criminalité erroné
 
 # To do
 - Le coté visuel est pas dutout fini
-- Mettre en responsiv
 
 # Bonus
+- Mettre en responsiv
 - Intégrer un générateur de carte bancaire
 - Mettre en place une sécurité anti insertion dans la bdd
 - Intégrer un panel admin pour reset les tables et controller d'autres trucs
@@ -31,3 +32,10 @@
 - Header
 - les images de profil qui diffèrent entre utilisateurs
 - la couleur par rapport à la dangerosié
+- Le crud des casier judiciaires
+- Le crud des user
+- Le crud des recent
+
+
+# Prepa pour l'exam
+

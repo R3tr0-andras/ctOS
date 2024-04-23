@@ -22,7 +22,7 @@ function searching($pdo, $searchTerm) {
 
 function GetTableUser($pdo) {
     try {
-        $query = "select * from user where userId = :userId ";
+        $query = "SELECT * FROM user WHERE userId = :userId ";
 
         $selectUserToTracking = $pdo->prepare($query);
 

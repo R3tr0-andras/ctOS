@@ -2,15 +2,16 @@
 
 require 'vendor/autoload.php';
 
+global $fakeUserIds;
+global $directory;
+
 /* 
 Fonction de création des ustilisateurs faker
 --------------------------------------------
 But : creer des éléments dans la table user
 */
 
-global $fakeUserIds;
-global $directory;
-
+/* Générer un utilisateur fictif */
 function CreateFaker($pdo)
 {
     $directory = "Assets/Pictures/fakerProfile";
@@ -206,8 +207,8 @@ function CreateCriminalFaker($pdo, $userId)
 
     try {
 
-        $query = "insert into criminal_record (userId, recordReason, recordDate, recordDangerousness) 
-            values (:userId, :recordReason, :recordDate, :recordDangerousness)";
+        $query = "INSERT INTO criminal_record (userId, recordReason, recordDate, recordDangerousness) 
+            VALUES (:userId, :recordReason, :recordDate, :recordDangerousness)";
 
         $CriminalFaker = $pdo->prepare($query);
 
@@ -267,7 +268,7 @@ function CreateRecentThing($pdo, $userId)
     $faker = Faker\Factory::Create();
 
     try {
-        $query = "insert into recent(userId, recentDate, recentContent) 
+        $query = "INSERT INTO recent(userId, recentDate, recentContent) 
         values (:userId, :recentDate, :recentContent)";
 
         $createFaker = $pdo->prepare($query);
@@ -317,7 +318,7 @@ function GetRecent()
 /* Obtenir le dernier faker crée */
 function GetLastFaker($pdo, $userId) {
 try {
-        $query = "select * from user where userId = " . $userId;
+        $query = "SELECT * FROM user WHERE userId = " . $userId;
 
         $selectFakerToSee = $pdo->prepare($query);
 
@@ -336,7 +337,7 @@ try {
 
 function GetFakerCriminalRecordUser($pdo ,$userId) {
     try {
-        $query = "select * from criminal_record where userId = " . $userId;
+        $query = "SELECT * FROM criminal_record WHERE userId = " . $userId;
 
         $selectUserToTracking = $pdo->prepare($query);
 
@@ -355,7 +356,7 @@ function GetFakerCriminalRecordUser($pdo ,$userId) {
 
 function GetFakerRecent($pdo ,$userId) {
     try {
-        $query = "select * from recent where userId = " . $userId;
+        $query = "SELECT * FROM recent WHERE userId = " . $userId;
 
         $selectUserToTracking = $pdo->prepare($query);
 

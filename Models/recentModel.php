@@ -2,7 +2,7 @@
 
 function GetTableRecent($pdo) {
     try {
-        $query = "select * from recent where userId = :userId ";
+        $query = "SELECT * FROM recent WHERE userId = :userId ";
 
         $selectUserToTracking = $pdo->prepare($query);
 

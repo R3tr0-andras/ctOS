@@ -12,33 +12,27 @@ $creationSuccess = false;
 if ($uri === '/fakerCreator') {
     if (isset($_POST['btnEnvoi'])) {
         $userId = CreateFaker($pdo);
-        //var_dump($userId);
+        // Créer un faux utilisateur avec un enregistrement criminel et une activité récente
         CreateCriminalFaker($pdo, $userId);
         CreateRecentThing($pdo, $userId);
 
-        $newfakerResult = GetLastFaker($pdo, $userId);
-        $newFakerCriminalRecord = GetFakerCriminalRecordUser($pdo ,$userId);
-        $newFakerRecent = GetFakerRecent($pdo ,$userId);
+        // Rediriger vers la page de suivi en passant l'ID utilisateur
+        header("Location: /trackingUser?userId=$userId");
+        exit;
+        
     } else {
         // Vérifier les champs vides
         $messageErreur = verifEmpty();
         if (!$messageErreur) {
-            
+            // Gérer le cas des champs vides
         }
     }
-    // Couleur
+    
+    // Configuration des paramètres pour la création de faux utilisateurs
     $couleurBackground = "#000000";
     $crimePourcentage = 0;
 
-    $title = $creationSuccess ? "Creating Complete" : "Creating";
-    $template = $creationSuccess ? "Views/faker/view.php" : "Views/faker/creator.php";
-    require_once("Views\base.php");
-} else if ($uri === '/fakerView') {
-    // Couleur
-    $couleurBackground = "#000000";
-    $crimePourcentage = 0;
-    
-    $title = "Creating Complete";
-    $template = "Views/faker/view.php";
+    $title = "Création Terminée" ;
+    $template = "Views/faker/creator.php";
     require_once("Views\base.php");
 }

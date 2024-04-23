@@ -1,8 +1,16 @@
 <?php
 
-function GetTableCriminalRecordUser($pdo) {
+/* 
+Fonction de création de casier judiciaire
+------------------------------------------------------
+But : creer des éléments dans la table criminal record
+*/
+
+/* Récupérer la table des casiers judiciaires */
+function GetTableCriminalRecordUser($pdo)
+{
     try {
-        $query = "select * from criminal_record where userId = :userId ";
+        $query = "SELECT * FROM criminal_record WHERE userId = :userId ";
 
         $selectUserToTracking = $pdo->prepare($query);
 
@@ -19,9 +27,11 @@ function GetTableCriminalRecordUser($pdo) {
     }
 }
 
-function createCriminalRecord($pdo) {
+/* Générer des crimes dans un casier judiciaire */
+function createCriminalRecord($pdo)
+{
     try {
-        $today = date("Y-m-d H:i:s"); 
+        $today = date("Y-m-d H:i:s");
 
         $query = "INSERT INTO criminal_record(userId, recordReason, recordDate, recordDangerousness) 
         VALUES (:userId, :recordReason, :recordDate, :recordDangerousness)";
@@ -40,12 +50,12 @@ function createCriminalRecord($pdo) {
     }
 }
 
-function UpdateCriminalRecord($pdo) {
+/* mettre à jour un crime */
+function UpdateCriminalRecord($pdo)
+{
     try {
-        $query = "UPDATE criminal_record SET 
-            recordDate = :recordDate,
-            recordReason = :recordReason
-        WHERE recordId = :recordId";
+        $query = "UPDATE criminal_record SET recordDate = :recordDate, 
+        recordReason = :recordReason WHERE recordId = :recordId";
 
         $updateUser = $pdo->prepare($query);
 
@@ -60,7 +70,9 @@ function UpdateCriminalRecord($pdo) {
     }
 }
 
-function DeleteCriminalRecord($pdo) {
+/* supprimer un crime */
+function DeleteCriminalRecord($pdo)
+{
     try {
         $query = "DELETE fROM criminal_record where recordId = :recordId";
 

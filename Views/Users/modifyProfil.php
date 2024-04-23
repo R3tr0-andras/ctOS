@@ -1,3 +1,38 @@
+<style>
+    input[type=file] {
+        color: #222245;
+        padding: 8px 12px;
+        background-color: #fff;
+        border: 1px solid #222245;
+    }
+
+    input[type=file]::file-selector-button {
+        margin-right: 8px;
+        border: none;
+        background: #084cdf;
+        padding: 8px 12px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    input[type=file]:focus {
+        outline: 5px dashed #000;
+        outline-offset: 2px;
+    }
+
+    /* On créé un bouton en ciblant un élément dans la balise label */
+    label span {
+        padding: 8px 12px;
+        background: #084cdf;
+        color: white;
+        cursor: pointer;
+    }
+
+    label span:hover {
+        background: #0d45a5;
+        color: white;
+    }
+</style>
 <form action="" method="post">
     <label for="Nom">Nom</label>
     <input type="text" id="Nom" name="Nom" value="<?= htmlspecialchars($userSearched->userName) ?>" required><br>
@@ -9,7 +44,7 @@
     <input type="text" id="Pseudo" name="Pseudo" value="<?= htmlspecialchars($userSearched->userPseudo) ?>" required><br>
 
     <label for="Password">Mot de passe</label>
-    <input type="text" id="Password" name="Password" value="<?= htmlspecialchars($userSearched->userPassword) ?>"<br>
+    <input type="text" id="Password" name="Password" value="<?= htmlspecialchars($userSearched->userPassword) ?>" <br>
 
     <label for="Mail">Email</label>
     <input type="email" id="Mail" name="Mail" value="<?= htmlspecialchars($userSearched->userEmail) ?>" required><br>
@@ -38,5 +73,5 @@
     <label for="ProfileImage">Image de profil</label>
     <input type="file" id="ProfileImage" name="ProfileImage" accept="image/*"><br>
 
-    <button name="modifyBTN">Modifier le profil</button>
+    <button class="buttonForm" name="modifyBTN">Modifier le profil</button>
 </form>

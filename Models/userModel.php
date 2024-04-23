@@ -80,7 +80,7 @@ But : récupérer des infos de la table user pour se connecter
 function connexionUser($pdo)
 {
     try {
-        $query = "select * from user where userPseudo=:userPseudo and userEmail=:userEmail and userPassword=:userPassword";
+        $query = "SELECT * FROM user WHERE userPseudo=:userPseudo AND userEmail=:userEmail AND userPassword=:userPassword";
         $connectUser = $pdo->prepare($query);
         $connectUser->execute([
             'userPseudo' => $_POST['Pseudo'],
@@ -152,7 +152,7 @@ function deleteUser($pdo, $userId)
 {
     try {
         if ($_SESSION['userRole'] == 'admin') {
-            $query = "delete from user where userId = :userId";
+            $query = "DELETE FROM user WHERE userId = :userId";
             $ajoutUser = $pdo->prepare($query);
             $ajoutUser->execute([
                 'userId' => $_SESSION['user']->userId

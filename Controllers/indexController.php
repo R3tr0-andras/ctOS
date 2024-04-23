@@ -11,6 +11,4 @@ if ($uri === "/index.php" || $uri === "/") {
     $title = "Page d'accueil";
     $template = "Views\home.php";
     require_once("Views\base.php");
-} elseif ($uri === "/search") {
-    
 }

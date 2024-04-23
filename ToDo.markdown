@@ -27,6 +27,8 @@
 - La fucking barre de recherche de merde qui n'avance pas et qui me donne envie de me tier une balle ^-^
     update : je pense plutot m'imoler par le feu ^-^ (merci madame baudson)
 - Le changement de page après tracking
+- Le boutton de creator qui redirige vers une erreur sql
+- Le boutton creator qui ne redirige pas vers le profil
 
 # Element intégré
 - Header

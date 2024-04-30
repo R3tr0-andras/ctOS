@@ -64,76 +64,46 @@ elseif (isset($_GET["userId"]) && $uri === "/trackingLive?userId=" . $_GET["user
     // Gestion du Crud des casier judiciaires
     if (isset($_POST['ModBTN'])) {
         if (UpdateCriminalRecord($pdo)) {
-            var_dump("test concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         } else {
-            var_dump("test non concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test non concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         }
     } else if (isset($_POST['DelBTN'])) {
         if (DeleteCriminalRecord($pdo)) {
-            var_dump("test concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         } else {
-            var_dump("test non concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test non concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         }
     }
 
     // Gestion du Crud des recent
     if (isset($_POST['RecentAddBTN'])) {
         if (AddRecent($pdo)) {
-            var_dump("test concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         } else {
-            var_dump("test non concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test non concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         }
     } else if (isset($_POST['RecentModBTN'])) {
         if (UpdateRecent($pdo)) {
-            var_dump("test concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         } else {
-            var_dump("test non concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test non concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         }
     } else if (isset($_POST['RecentDelBTN'])) {
         if (DeleteRencent($pdo)) {
-            var_dump("test concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         } else {
-            var_dump("test non concluant");
-            // Gestion des routes
-            $title = "Tracking";
-            $template = "Views/search/trackingUser.php";
-            require_once("Views\base.php");
+            //var_dump("test non concluant");
+            header("Location: /trackingUser?userId=" . $_GET["userId"]);
         }
     }
 

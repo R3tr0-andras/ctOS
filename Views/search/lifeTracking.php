@@ -15,7 +15,7 @@ if (isset($_SESSION['user']) && $userSearched->userIsFaker == 1) {
 <?php if (empty($criminalRecordUsers)) : ?>
     <section class="">
         <div>
-            <h2>Le casier judiciaire est vierge</h2>
+            <h2 style="color: white;">Le casier judiciaire est vierge</h2>
         </div>
         <!-- Button to modify who's tracking if you're an andmin -->
         <?php if ($_SESSION['user']->userRole == "admin") : ?>

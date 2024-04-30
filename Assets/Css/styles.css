@@ -60,36 +60,54 @@ header .logoImg {
 }
 
 /* Partie Main de la page home */
-
-main {
-    box-sizing: border-box;
-    min-height: calc(100% - 100px);
-    /* Taille du viewport - taille du footer */
-    display: flex;
-    flex-direction: column;
-}
-
 .main-home-diplay {
     display: flex;
     flex-direction: column;
+    height: 100%;
     align-items: center;
     justify-content: center;
 }
 
 .CtosExplain {
-    margin-right: 20px;
-    margin-left: 20px;
-    margin-top: 2%;
-    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+/* couleur de fond bleu ciel */
+.blue {
+    background-color: #24C1F3;
+}
+
+/* couleur de fond orange */
+.orange {
+    background-color: #E64A19;
 }
 
 .CtosExplain p {
-    background-color: #333;
     color: white;
-    max-width: 800px;
-    padding: 20px;
+    margin: 20px 40px;
+    /* Augmentation de la marge pour un espacement plus agréable */
+    font-weight: bold;
+    line-height: 1.6;
+    /* Augmentation de l'espacement des lignes pour une meilleure lisibilité */
+    font-size: 16px;
+    /* Ajustement de la taille de la police */
+    font-family: Arial, sans-serif;
+    /* Utilisation d'une police de caractères sans empattement pour une meilleure lisibilité */
+}
+
+.CtosExplain img {
+    max-width: 400px;
     border-radius: 15px;
-    margin: 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -97,6 +115,23 @@ iframe {
     border: none;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.image-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 2%;
+}
+
+.image-section img {
+    width: 30%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-section img:hover {
+    transform: scale(1.1);
 }
 
 .lienVersConnexion {

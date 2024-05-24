@@ -104,6 +104,7 @@ function connexionUser($pdo)
 //Modifier un utilisateur
 function UpdateUser($pdo)
 {
+
     try {
         $query = "UPDATE user SET 
                     userName = :userName,
@@ -117,7 +118,7 @@ function UpdateUser($pdo)
                     userPhoneNumber = :userPhoneNumber,
                     userEthnic = :userEthnic,
                     userJobs = :userJobs,
-                    userIncome = :userIncome
+                    userIncome = :userIncome,
                 WHERE userId = :userId";
 
         $updateUser = $pdo->prepare($query);
@@ -142,6 +143,8 @@ function UpdateUser($pdo)
         die($message);
     }
 }
+
+
 
 /* 
 Fonction de supression des ustilisateurs 

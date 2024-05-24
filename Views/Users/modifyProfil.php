@@ -1,4 +1,4 @@
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <label for="Nom">Nom</label>
     <input type="text" id="Nom" name="Nom" value="<?= htmlspecialchars($userSearched->userName) ?>" required><br>
 
@@ -34,9 +34,7 @@
 
     <label for="Income">Revenu</label>
     <input type="text" id="Income" name="Income" value="<?= htmlspecialchars($userSearched->userIncome) ?>"><br>
-
-    <label for="ProfileImage">Image de profil</label>
-    <input type="file" id="ProfileImage" name="ProfileImage" accept="image/*"><br>
+    <br>
 
     <button class="buttonForm" name="modifyBTN">Modifier le profil</button>
 </form>

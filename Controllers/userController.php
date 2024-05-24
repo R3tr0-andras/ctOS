@@ -79,7 +79,7 @@ if ($uri === '/profil') {
     $title = "Home page";
     $template = "Views\home.php";
     require_once("Views\base.php");
-} 
+}
 //elseif ($uri == "/modify") {
 //  
 //} 

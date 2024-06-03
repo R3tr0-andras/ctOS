@@ -2,7 +2,7 @@
 - Calcul du pourcentage de criminalité erroné
 
 # To do
-- Le coté visuel est pas dutout fini
+- NOTHING
 
 # Bonus
 - Mettre en responsiv

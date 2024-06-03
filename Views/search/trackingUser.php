@@ -31,6 +31,9 @@
                 <button class="buttonTracking">
                     <a href="/modifyProfil?userId=<?= $userSearched->userId ?>">Modify</a>
                 </button>
+                <button class="buttonTracking">
+                    <a href="/deleteProfil?userId=<?= $userSearched->userId ?>">Delete</a>
+                </button>
             <?php endif ?>
         </div>
     </div>

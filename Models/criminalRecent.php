@@ -86,3 +86,16 @@ function DeleteCriminalRecord($pdo)
         die($message);
     }
 }
+
+function DeleteAllRecords($pdo, $idToDelete) {
+    try {
+        $query = "DELETE FROM criminal_record WHERE userId = :userId";
+        $updateUser = $pdo->prepare($query);
+        $updateUser->execute([
+            'userId' => $idToDelete
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}

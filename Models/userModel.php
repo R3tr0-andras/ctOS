@@ -118,7 +118,7 @@ function UpdateUser($pdo)
                     userPhoneNumber = :userPhoneNumber,
                     userEthnic = :userEthnic,
                     userJobs = :userJobs,
-                    userIncome = :userIncome,
+                    userIncome = :userIncome
                 WHERE userId = :userId";
 
         $updateUser = $pdo->prepare($query);
@@ -151,28 +151,13 @@ Fonction de supression des ustilisateurs
 ---------------------------------------
 But : suprimer toutes les infos de la table user
 */
-function deleteUser($pdo, $userId)
-{
+function deleteUser($pdo, $idToDelete) {
     try {
-        if ($_SESSION['userRole'] == 'admin') {
-            $query = "DELETE FROM user WHERE userId = :userId";
-            $ajoutUser = $pdo->prepare($query);
-            $ajoutUser->execute([
-                'userId' => $_SESSION['user']->userId
-            ]);
-            // Message à afficher après la suppression
-            $deleteMessage = "L'utilisateur a été supprimé avec succès.";
-            echo $deleteMessage;
-            // Fermer la session
-            session_destroy();
-
-            // Redirection vers la page d'accueil après 2 secondes
-            header("refresh:2; url=index.php");
-            exit();
-        } else {
-            $VousPouvezPas = "Vous ne pouvez pas supprimer l'utilisateur";
-            echo $VousPouvezPas;
-        }
+        $query = "DELETE FROM user WHERE userId = :userId";
+        $ajoutUser = $pdo->prepare($query);
+        $ajoutUser->execute([
+            'userId' => $idToDelete
+        ]);
     } catch (PDOException $e) {
         $message = $e->getMessage();
         die($message);

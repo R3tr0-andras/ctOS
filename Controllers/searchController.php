@@ -1,11 +1,11 @@
 <?php
 
 // Inclure le modèle utilisateur et crud
-require_once ("Models/userModel.php");
-require_once ("Models/searchModel.php");
-require_once ("Models/dangerousnessModel.php");
-require_once ("Models/criminalRecent.php");
-require_once ("Models/recentModel.php");
+require_once("Models/userModel.php");
+require_once("Models/searchModel.php");
+require_once("Models/dangerousnessModel.php");
+require_once("Models/criminalRecent.php");
+require_once("Models/recentModel.php");
 
 // Récupérer l'URI de la requête
 $uri = $_SERVER['REQUEST_URI'];
@@ -130,10 +130,11 @@ elseif (isset($_GET["userId"]) && $uri === "/modifyProfil?userId=" . $_GET["user
             $title = "Tracking";
             $template = "Views/search/trackingUser.php";
             require_once("Views\base.php");
-            exit; // Stop further execution after redirection
         } else {
-            // Handle update failure
-            // You might want to set an error message here
+            // Gestion des routes
+            $title = "Tracking";
+            $template = "Views/search/trackingUser.php";
+            require_once("Views\base.php");
         }
     }
 
@@ -173,4 +174,20 @@ elseif (isset($_GET["userId"]) && $uri === "/setCriminalRecord?userId=" . $_GET[
     $title = "Ajout";
     $template = "Views\search\setCriminalRecord.php";
     require_once("Views\base.php");
+} elseif (isset($_GET["userId"]) && $uri === "/deleteProfil?userId=" . $_GET["userId"]) {
+    $idToDelete = $_GET["userId"];
+    //var_dump($idToDelete);
+
+    DeleteAllRecords($pdo, $idToDelete);
+    DeleteRecentByProfile ($pdo, $idToDelete);
+    deleteUser($pdo, $idToDelete);
+    
+    $title = "Page d'accueil";
+    $template = "Views\home.php";
+    require_once("Views\base.php");
+    
+    //$title = "Tracking";
+    //$template = "Views/search/searching.php";
+    //require_once("Views\base.php");
+
 }

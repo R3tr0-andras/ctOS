@@ -68,3 +68,16 @@ function DeleteRencent($pdo) {
         die($message);
     }
 }
+
+function DeleteRecentByProfile($pdo, $idToDelete) {
+    try {
+        $query = "DELETE FROM recent WHERE userId = :userId";
+        $updateUser = $pdo->prepare($query);
+        $updateUser->execute([
+            'userId' => $idToDelete
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
